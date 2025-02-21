@@ -62,7 +62,11 @@ h1, h2 {
 
 /* Adjusting image margin to give space above */
 #home img {
+    width: 80%; /* Limits the image width */
+    max-width: 100%; /* Ensures it never exceeds the container width */
+    height: auto; /* Maintains the image's aspect ratio */
     margin-top: 20px; /* Adds space above the image */
+    display: block; /* Ensures no extra space below the image */
 }
 
 /* General image styling */
