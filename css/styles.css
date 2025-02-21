@@ -60,23 +60,42 @@ h1, h2 {
     margin-top: 20px; /* Adds spacing to the top */
 }
 
-/* Adjusting image margin to give space above */
+/* Adjusting image margin to give space above for home section */
 #home img {
     width: 80%; /* Limits the image width */
     max-width: 100%; /* Ensures it never exceeds the container width */
     height: auto; /* Maintains the image's aspect ratio */
     margin-top: 20px; /* Adds space above the image */
-    display: block; /* Ensures no extra space below the image */
+    display: block; /* Prevents extra space below the image */
 }
 
-/* General image styling */
+/* General image styling for all images */
 img {
-    max-width: 100%; /* Ensures images don't overflow the container */
-    height: auto; /* Keeps the image aspect ratio intact */
+    max-width: 80%; /* Ensures images don't exceed 80% of container width */
+    height: auto; /* Keeps the aspect ratio intact */
     display: block; /* Prevents extra space below the image */
     margin: 20px auto; /* Centers images horizontally with space around them */
     border: none; /* Removes any default border */
     padding: 0; /* Removes padding */
+}
+
+/* Home section image positioning */
+#home img {
+    margin-top: 20px;
+}
+
+/* Features section layout */
+#features {
+    margin-top: 50px; /* Adds space between sections */
+    text-align: center;
+}
+
+/* Ensure image under features is properly sized */
+#features img {
+    max-width: 80%; /* Matches size of dog-2 */
+    height: auto;
+    display: block;
+    margin: 20px auto;
 }
 
 /* Responsive image styling for smaller screens */
