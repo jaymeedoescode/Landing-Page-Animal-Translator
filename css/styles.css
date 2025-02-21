@@ -15,10 +15,10 @@ li {
     color: rgb(199, 243, 40);
 }
 
+/* Reduced font size for header links */
 .sitelinks {
-    font-size:40px;
+    font-size: 24px;
 }
-
 
 #hero {
     display: flex;
@@ -27,3 +27,4 @@ li {
     height: 300px;
     background-color: lightgray;
 }
+
