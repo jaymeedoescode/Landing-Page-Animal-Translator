@@ -1,2 +1,1 @@
-# Landing-Page-Animal-Translator
-Animal translator software landing page for software dev assignment 1
+Accidently copied the wrong commit of the main to make this new branch so I made the second one with the right version, then I accidently committed to and updated this one so now the second one is just useless.
