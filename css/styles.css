@@ -1,3 +1,4 @@
+/* General nav styling */
 nav {
     background: #85002f;
     color: white;
@@ -28,3 +29,40 @@ li {
     background-color: lightgray;
 }
 
+/* Main content styling */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+    height: 100vh; /* Takes full viewport height */
+    text-align: center; /* Ensures text is centered */
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 50px; /* Adds space between sections */
+}
+
+/* Ensure that h1 and h2 headers are also centered */
+h1, h2 {
+    margin: 0;
+}
+
+/* General image styling */
+img {
+    max-width: 100%; /* Ensures images don't overflow the container */
+    height: auto; /* Keeps the image aspect ratio intact */
+    display: block; /* Prevents extra space below the image */
+    margin: 20px auto; /* Centers images horizontally with space around them */
+    border: none; /* Removes any default border */
+    padding: 0; /* Removes padding */
+}
+
+/* Responsive image styling for smaller screens */
+@media (max-width: 768px) {
+    img {
+        max-width: 100%; /* Ensures images are responsive on smaller screens */
+        height: auto; /* Keeps aspect ratio intact */
+    }
+}
