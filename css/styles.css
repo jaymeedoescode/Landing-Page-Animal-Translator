@@ -49,6 +49,22 @@ h1, h2 {
     margin: 0;
 }
 
+/* Home section layout */
+#home {
+    min-height: 300px; /* Prevents overlap by setting minimum height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+    text-align: center;
+    margin-top: 20px; /* Adds spacing to the top */
+}
+
+/* Adjusting image margin to give space above */
+#home img {
+    margin-top: 20px; /* Adds space above the image */
+}
+
 /* General image styling */
 img {
     max-width: 100%; /* Ensures images don't overflow the container */
