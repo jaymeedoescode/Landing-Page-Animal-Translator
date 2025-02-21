@@ -1,8 +1,24 @@
 nav {
-    background: #333;
+    background: #85002f;
     color: white;
     padding: 10px;
 }
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+li {
+    margin-right: 40px;
+    color: rgb(199, 243, 40);
+}
+
+.sitelinks {
+    font-size:40px;
+}
+
 
 #hero {
     display: flex;
