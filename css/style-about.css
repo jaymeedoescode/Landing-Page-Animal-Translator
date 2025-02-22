@@ -1,21 +1,220 @@
-.divstyle {
-    color: rgb(26, 149, 177);
 
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    text-align: center;
+    background: url('cat-1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
 }
 
-.imagestyle {
-    width:300px;
-    height:150px;
-    margin:30px;
+/* transparent navbar with blur effect */
+.top-nav {
+    width: 100%;
+    padding: 10px 20px;
+    position: static;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none;
+    z-index: 10;
+    height: 70px;
+}
 
+/* container to hold all nav items */
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* left links */
+.nav-links.left {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    position: absolute;
+    left: 10%;
+}
+
+/* middle logo */
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+}
+
+/* right links */
+.nav-links.right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    position: absolute;
+    right: 10%;
+}
+
+/* styles for the links */
+.nav-links a {
+    color: #187795;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+
+.bottom-nav {
+    width: 100%;
+    padding: 15px 0;
+    background-color: #187795;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    border-radius: 0;
+    position: relative;
+    bottom: 0;
+    border: none;
+}
+
+.bottom-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+}
+
+/* hero section */
+.hero {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* text styling */
+.divstyle {
+    margin: 40px auto;
+    font-size: 18px;
+    color: #187795;
+    font-family: Georgia, serif;
+    max-width: 800px;
+    line-height: 1.6;
+    padding: 0 20px;
+}
+
+/* links container and styling  */
+.links-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    position: relative;
+    height: 30px;
 }
 
 .linkstyle {
-    margin-left: 40px;
-    margin-right: 40px;
     font-size: 20px;
+    color: #187795;
+    text-decoration: none;
+    position: absolute;
+    white-space: nowrap; 
+}
+
+
+.linkstyle:first-child {
+    left: 15%;
+    transform: translateX(-50%);
+}
+
+
+.linkstyle:last-child {
+    left: 75%;
+    transform: translateX(-50%);
 }
 
 .iframestyle {
-    margin:50px;
+    margin: 50px;
+}
+
+.hero h1, .hero p {
+    color: white;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #187795;
+}
+
+/* CTA button style for About page */
+.cta-button {
+    padding: 15px 30px;
+    background-color: #187795;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #145f75;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 20px 0;
+}
+
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #38686A;
+    padding: 5px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.imagestyle {
+    margin: 50px;
+    width: 560px;
+    height: 280px;
+    background-color: transparent;
 }
