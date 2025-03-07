@@ -1,4 +1,3 @@
-
 body {
     font-family: sans-serif;
     display: flex;
@@ -6,9 +5,12 @@ body {
     align-items: center;
     margin: 0;
     text-align: center;
+    background-color: white;
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
     background: url('cat-1.jpg') no-repeat center center fixed;
     background-size: cover;
-    position: relative;
 }
 
 /* transparent navbar with blur effect */
@@ -24,12 +26,14 @@ body {
     box-shadow: none;
     z-index: 10;
     height: 70px;
+    overflow: visible;
+    box-sizing: border-box;
 }
 
 /* container to hold all nav items */
 .nav-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     max-width: 1200px;
@@ -70,7 +74,7 @@ body {
 
 /* styles for the links */
 .nav-links a {
-    color: #187795;
+    color: black;
     text-decoration: none;
     font-size: 18px;
     transition: background-color 0.3s ease;
@@ -81,27 +85,27 @@ body {
     border-radius: 4px;
 }
 
-
+/* Bottom nav styles */
 .bottom-nav {
     width: 100%;
-    padding: 15px 0;
-    background-color: #187795;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    border-radius: 0;
-    position: relative;
-    bottom: 0;
-    border: none;
+    padding: 10px 0; /* Adjust padding for a skinnier nav bar */
+    background-color: #187795; /* Background color */
+    color: white; /* Text color */
+    display: flex; /* Flexbox for layout */
+    justify-content: center; /* Center the links */
+    align-items: center; /* Center items vertically */
+    margin: 0; /* Remove margin */
+    border-radius: 0; /* No rounded corners */
+    position: relative; /* Positioning */
+    bottom: 0; /* Align to the bottom */
+    border: none; /* No border */
 }
 
 .bottom-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 20px;
-    font-size: 18px;
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+    margin: 0 15px; /* Space between links */
+    font-size: 20px; /* Font size for links */
 }
 
 /* hero section */
@@ -148,12 +152,10 @@ body {
     white-space: nowrap; 
 }
 
-
 .linkstyle:first-child {
     left: 15%;
     transform: translateX(-50%);
 }
-
 
 .linkstyle:last-child {
     left: 75%;
@@ -192,7 +194,6 @@ body {
     background-color: #145f75;
 }
 
-
 .button-container {
     display: flex;
     justify-content: center;
@@ -200,21 +201,251 @@ body {
     margin: 20px 0;
 }
 
-
 .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    background-color: #38686A;
-    padding: 5px;
-    width: 100%;
-    margin: 20px 0;
+    background: linear-gradient(to top, #38686A, #ffffff); /* Gradient from blue at the bottom to white at the top */
+    padding: 20px; /* Optional: Add some padding */
+    border-radius: 10px; /* Optional: Rounded corners */
+    margin: 20px 0; /* Maintain existing margin */
+}
+
+.image-wrapper {
+    position: relative;
+    margin: 10px;
+    overflow: hidden; /* Hide overflow to keep the overlay within bounds */
+}
+
+.image-wrapper img {
+    transition: filter 0.3s ease; /* Smooth transition for blur effect */
+}
+
+.image-wrapper:hover img {
+    filter: blur(5px); /* Apply blur effect to the image on hover */
+}
+
+.quote-overlay, .squirrel-overlay {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    color: #fff; /* Change text color to white for better visibility */
+    font-family: 'Lily Script One', cursive; /* Use the new font */
+    font-size: 3vw; /* Smaller font size for mobile */
+    font-weight: bold; /* Make the text bold */
+    text-align: center;
+    width: 80%; /* Allow some space on the sides */
+    max-width: 90%; /* Set a maximum width to keep text within image */
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9); /* Darker and harsher shadow */
+}
+
+/* Show overlay on hover */
+.image-wrapper:hover .quote-overlay,
+.image-wrapper:hover .squirrel-overlay {
+    opacity: 1; /* Show on hover */
+    transform: translate(-50%, 0); /* Move to original position */
 }
 
 .imagestyle {
-    margin: 50px;
-    width: 560px;
-    height: 280px;
-    background-color: transparent;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    border: 5px solid #187795;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 6s ease-in-out; /* Increased duration for a slower effect */
+}
+
+.imagestyle:hover {
+    transform: scale(1.05);
+}
+
+/* Content styles */
+.content {
+    width: 100%;
+    padding: 20px;
+}
+
+/* Hide nav links in mobile view */
+.nav-links {
+    display: flex; /* Show on desktop */
+}
+
+/* Mobile menu button */
+.mobile-menu-button {
+    display: flex; /* Show the button */
+}
+
+/* Mobile dropdown menu styles */
+.mobile-menu {
+    display: none; /* Hide by default */
+    flex-direction: column; /* Stack links vertically */
+    background-color: rgba(255, 255, 255, 0.9); /* Translucent background */
+    position: absolute; /* Position it below the button */
+    top: 70px; /* Position it just below the navbar */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it appears above other content */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.mobile-menu.open {
+    display: flex; /* Show when open */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .divstyle {
+        padding: 0 10px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .image-container {
+        flex-direction: column;
+    }
+
+    .imagestyle {
+        width: 100%;
+        height: auto;
+    }
+
+    .nav-links {
+        display: none !important; /* Force hide nav links on mobile */
+    }
+
+    .mobile-menu-button {
+        display: flex; /* Show the button */
+    }
+
+    .mobile-menu {
+        display: none; /* Hide by default */
+    }
+
+    .mobile-menu.open {
+        display: flex; /* Show when open */
+    }
+
+    .bottom-nav {
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50px;
+    }
+
+    .bottom-nav a {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+.white-space {
+    height: auto; /* Allow height to adjust based on content */
+    background-color: white; /* Optional: Set background color to white */
+    padding: 20px; /* Add padding to the top and bottom */
+    margin-bottom: 60px; /* Ensure space for the bottom nav */
+}
+
+/* Pricing section styles */
+.pricing {
+    position: relative;
+    width: 100%;
+    height: 60vh; 
+    margin: 40px 0;
+    overflow: hidden;
+}
+
+.pricing::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../pictures/dogphone.jpeg') no-repeat center center;
+    background-size: cover;
+    filter: blur(5px);
+    z-index: -1;
+}
+
+.about-pricing-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    padding: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.pricing-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.pricing-content p {
+    font-size: 1.2em;
+    max-width: 800px;
+}
+
+.legal-fine-print {
+    font-size: 14px; /* Adjust font size as needed */
+    color: #187795; /* Match the color of other paragraphs */
+    max-width: 800px; /* Limit the width for better readability */
+    margin: 20px auto; /* Center the text */
+    line-height: 1.6; /* Improve line spacing */
+    padding: 10px; /* Add some padding */
+    background-color: rgba(255, 255, 255, 0.9); /* Optional: Slightly translucent background */
+    border-radius: 5px; /* Optional: Rounded corners */
+}
+
+/* Responsive Design for Images */
+@media (max-width: 768px) {
+    .image-container {
+        flex-direction: column; /* Stack images vertically on mobile */
+    }
+
+    .imagestyle {
+        width: 100%; /* Full width for images */
+        height: auto; /* Maintain aspect ratio */
+    }
+}
+
+/* Adjust overlay font size and positioning for mobile and desktop */
+.quote-overlay, .squirrel-overlay {
+    font-size: 3vw; /* Smaller font size for mobile */
+    max-width: 90%; /* Set a maximum width to keep text within image */
+    text-align: center; /* Center the text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow */
+    position: absolute; /* Position absolutely within the image */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for centering */
+}
+
+/* Adjustments for desktop view */
+@media (min-width: 769px) {
+    .quote-overlay, .squirrel-overlay {
+        font-size: 24px; /* Larger font size for desktop */
+        max-width: 200px; /* Increase maximum width for desktop */
+        white-space: normal; /* Allow text to wrap on desktop */
+    }
 }
