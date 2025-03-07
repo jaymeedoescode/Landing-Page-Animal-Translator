@@ -11,6 +11,13 @@
   <!-- transparent navbar with blur effect -->
   <div class="top-nav">
     <div class="nav-container">
+      <!-- Mobile menu button -->
+      <div class="mobile-menu-button" id="mobileMenuButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
       <!-- Left-side links -->
       <div class="nav-links left">
         <a href="index.html">Home</a>
@@ -24,11 +31,18 @@
 
       <!-- right links -->
       <div class="nav-links right">
-        <!-- Renamed Features to Pricing -->
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact Us</a>
       </div>
     </div>
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact Us</a>
   </div>
 
   <!-- hero Section with blurred raccoon background -->
@@ -36,6 +50,7 @@
     <h1>Welcome to Animal Translator!</h1>
     <p>Translate your pets' thoughts to human language!</p>
     <a href="https://www.newyorker.com/science/elements/the-challenges-of-animal-translation" class="cta-button" target="_blank">Learn More</a>
+    <link rel="preload" href="pictures/raccoon.jpg" as="image">
   </header>
 
   <div class="divstyle">
@@ -46,8 +61,8 @@
   <div class="translator-heading">The Animal Translator</div>
 
   <div class="image-container">
-    <img src="pictures/dog-1.jpg" class="imagestyle" alt="A person using the Animal Translator app with their dog" />
-    <img src="pictures/dog-2.jpg" class="imagestyle" alt="Features of the Animal Translator app" />
+    <img src="pictures/dog-1.jpg" class="imagestyle" alt="A person using the Animal Translator app with their dog" width="560" height="280" />
+    <img src="pictures/dog-2.jpg" class="imagestyle" alt="Features of the Animal Translator app" width="560" height="280" />
   </div>
 
   <!-- pricing with money.jpg as background -->
@@ -71,11 +86,12 @@
     </div>
   </section>
 
-  <div class="bottom-nav">
-    <a href="index.html">Home</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#contact">Contact Us</a>
-    <a href="about.html">About</a>
+  <!-- New bottom navigation links -->
+  <div class="bottom-nav" style="background-color: #187795; color: white; padding: 10px; text-align: center;">
+    <a href="index.html" style="color: white; margin: 0 15px;">Home</a>
+    <a href="#pricing" style="color: white; margin: 0 15px;">Pricing</a>
+    <a href="#contact" style="color: white; margin: 0 15px;">Contact Us</a>
+    <a href="about.html" style="color: white; margin: 0 15px;">About</a>
   </div>
 
   <script>
@@ -98,6 +114,15 @@
 
     window.addEventListener('scroll', handleScrollAnimation);
     handleScrollAnimation();
+
+    // JavaScript to toggle mobile menu
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      mobileMenuButton.classList.toggle('open');
+    });
   </script>
 </body>
 </html>
