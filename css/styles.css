@@ -1,334 +1,461 @@
 /* Global body styling */
 body {
-    font-family: sans-serif;
-    display: flex;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  text-align: center;
+  background-color: white;
+  position: relative;
+  /* Fix horizontal overflow issue */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* transparent navbar with blur effect */
+.top-nav {
+  width: 100%;
+  padding: 10px 20px;
+  position: static;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  z-index: 10;
+  height: 70px;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* container to hold all the nav items */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+/* Mobile menu button - updated to look like a plus sign */
+.mobile-menu-button {
+  cursor: pointer; /* Change cursor to pointer */
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack spans vertically */
+  justify-content: center; /* Center the spans */
+  align-items: center; /* Center the spans */
+  background: none; /* Remove any background */
+  border: none; /* Remove any border */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.mobile-menu-button span {
+  display: block; /* Make spans block elements */
+  width: 30px; /* Set width for the hamburger lines */
+  height: 4px; /* Set height for the hamburger lines */
+  background-color: #187795; /* Color for the hamburger lines */
+  margin: 3px 0; /* Space between lines */
+  transition: all 0.3s ease; /* Smooth transition for transformations */
+}
+
+/* Create plus sign with two perpendicular lines */
+.mobile-menu-button span:nth-child(1) {
+  transform: translateY(0); /* Original position */
+}
+
+.mobile-menu-button span:nth-child(2) {
+  opacity: 1; /* Fully visible */
+}
+
+.mobile-menu-button span:nth-child(3) {
+  transform: translateY(0); /* Original position */
+}
+
+/* X animation when menu is open */
+.mobile-menu-button.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg); /* Move down and rotate */
+}
+
+.mobile-menu-button.open span:nth-child(2) {
+  opacity: 0; /* Hide the middle line */
+}
+
+.mobile-menu-button.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg); /* Move up and rotate */
+}
+
+/* left links */
+.nav-links.left {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  position: absolute;
+  left: 10%;
+}
+
+/* middle logo */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo img {
+  width: 60px;
+  height: auto;
+}
+
+/* right links */
+.nav-links.right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  position: absolute;
+  right: 10%;
+}
+
+/* link styling */
+.nav-links a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* hero section with blurred raccoon background */
+.hero {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../pictures/raccoon.jpg') no-repeat center center;
+  background-size: cover;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+/* Hero text styling */
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+  color: white;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button {
+  padding: 15px 30px;
+  background-color: #187795;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #145f75;
+}
+
+/* text styling */
+.divstyle {
+  margin: 40px auto;
+  font-size: 18px;
+  color: #187795;
+  font-family: Georgia, serif;
+  max-width: 800px;
+  line-height: 1.6;
+  padding: 0 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+
+/* image container */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #38686A;
+  padding: 5px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.imagestyle {
+  margin: 5px;
+  width: 560px;
+  height: 280px;
+  object-fit: cover;
+  background-color: transparent;
+  max-width: 100%;
+  height: auto;
+}
+
+/* pricing & contact  */
+.pricing {
+  position: relative;
+  width: 100%;
+  height: 60vh; 
+  margin: 40px 0;
+  overflow: hidden;
+}
+
+.pricing::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../pictures/money.jpg') no-repeat center center;
+  background-size: cover;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+
+.pricing.contact::before {
+  background: url('../pictures/phone.jpg') no-repeat center center;
+  background-size: cover;
+  filter: blur(5px);
+}
+
+.pricing-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.pricing-content h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.pricing-content p {
+  font-size: 1.2em;
+  max-width: 800px;
+}
+
+/* BOTOM nav */
+.bottom-nav {
+  width: 100%;
+  padding: 15px 0;
+  background-color: #187795;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  border-radius: 0;
+  position: relative;
+  bottom: 0;
+  border: none;
+}
+
+.bottom-nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 18px;
+}
+
+/* The Animal Translator heading */
+.translator-heading {
+  font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+  font-size: 48px;
+  color: #187795;
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.translator-heading.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.translator-heading::before {
+  content: "❯❯";
+  font-size: 36px;
+  color: #187795;
+}
+
+.translator-heading::after {
+  content: "❮❮";
+  font-size: 36px;
+  color: #187795;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .image-container {
     flex-direction: column;
-    align-items: center;
-    margin: 0;
-    text-align: center;
-    background-color: white;
-    position: relative;
   }
-  
-  /* transparent navbar with blur effect */
-  .top-nav {
+
+  .imagestyle {
     width: 100%;
-    padding: 10px 20px;
-    position: static;
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: none;
-    z-index: 10;
-    height: 70px;
-  }
-  
-  /* container to hold all the nav items */
-  .nav-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-  }
-  
-  /* left links */
-  .nav-links.left {
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-    position: absolute;
-    left: 10%;
-  }
-  
-  /* middle logo */
-  .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .logo img {
-    width: 60px;
     height: auto;
   }
-  
-  /* right links */
+
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .nav-links.left,
   .nav-links.right {
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
+    display: none;
     position: absolute;
-    right: 10%;
-  }
-  
-  /* link styling */
-  .nav-links a {
-    color: black;
-    text-decoration: none;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .nav-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-  }
-  
-  /* hero section with blurred raccoon background */
-  .hero {
-    height: 80vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-  
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
+    top: 70px;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: url('../pictures/raccoon.jpg') no-repeat center center;
-    background-size: cover;
-    filter: blur(5px);
-    z-index: -1;
+    background-color: rgba(255, 255, 255, 0.95);
+    flex-direction: column;
+    width: 100%;
+    z-index: 15;
+    padding: 10px 0;
+    align-items: flex-start; /* Left alignment */
   }
   
-  /* Hero text styling */
+  .nav-links.left.open,
+  .nav-links.right.open {
+    display: flex;
+  }
+  
+  .nav-links.left a,
+  .nav-links.right a {
+    padding: 10px 20px; /* Add left padding for alignment */
+    width: calc(100% - 40px); /* Account for padding */
+    display: block;
+    color: #187795; /* Blue links */
+    text-align: left;
+  }
+
+  .logo {
+    position: relative;
+    left: auto;
+    transform: none;
+    margin: 0 auto;
+  }
+
   .hero h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 2em;
   }
-  
+
   .hero p {
-    color: white;
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 1em;
   }
-  
-  .cta-button {
-    padding: 15px 30px;
-    background-color: #187795;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cta-button:hover {
-    background-color: #145f75;
-  }
-  
-  /* text styling */
-  .divstyle {
-    margin: 40px auto;
-    font-size: 18px;
-    color: #187795;
-    font-family: Georgia, serif;
-    max-width: 800px;
-    line-height: 1.6;
-    padding: 0 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-  }
-  
-  /* image container */
-  .image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    background-color: #38686A;
-    padding: 5px;
-    width: 100%;
-    margin: 20px 0;
-  }
-  
-  .imagestyle {
-    margin: 5px;
-    width: 560px;
-    height: 280px;
-    object-fit: cover;
-    background-color: transparent;
-  }
-  
-  /* pricing & contact  */
-  .pricing {
-    position: relative;
-    width: 100%;
-    height: 60vh; 
-    margin: 40px 0;
-    overflow: hidden;
-  }
-  
-  .pricing::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('../pictures/money.jpg') no-repeat center center;
-    background-size: cover;
-    filter: blur(5px);
-    z-index: -1;
-  }
-  
-  
-  .pricing.contact::before {
-    background: url('../pictures/phone.jpg') no-repeat center center;
-    background-size: cover;
-    filter: blur(5px);
-  }
-  
-  .pricing-content {
-    position: relative;
-    z-index: 1;
-    color: white;
-    padding: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .pricing-content h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-  }
-  
-  .pricing-content p {
-    font-size: 1.2em;
-    max-width: 800px;
-  }
-  
-  /* BOTOM nav */
-  .bottom-nav {
-    width: 100%;
-    padding: 15px 0;
-    background-color: #187795;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    border-radius: 0;
-    position: relative;
-    bottom: 0;
-    border: none;
-  }
-  
-  .bottom-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 20px;
-    font-size: 18px;
-  }
-  
-  /* The Animal Translator heading */
+
   .translator-heading {
-    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
-    font-size: 48px;
-    color: #187795;
-    margin: 30px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .translator-heading.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .translator-heading::before {
-    content: "❯❯";
     font-size: 36px;
-    color: #187795;
   }
-  
-  .translator-heading::after {
-    content: "❮❮";
-    font-size: 36px;
-    color: #187795;
+
+  .bottom-nav {
+    flex-wrap: wrap;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .image-container {
-      flex-direction: column;
-    }
-  
-    .imagestyle {
-      width: 100%;
-      height: auto;
-    }
-  
-    .nav-links.left,
-    .nav-links.right {
-      display: none;
-    }
-  
-    .logo {
-      position: relative;
-      left: auto;
-      transform: none;
-    }
-  
-    .hero h1 {
-      font-size: 2em;
-    }
-  
-    .hero p {
-      font-size: 1em;
-    }
-  
-    .translator-heading {
-      font-size: 36px;
-    }
-  
-    .bottom-nav {
-      flex-wrap: wrap;
-    }
-  
-    .bottom-nav a {
-      margin: 5px 10px;
-    }
-  
-    .pricing-content h1 {
-      font-size: 2.5em;
-    }
-  
-    .pricing-content p {
-      font-size: 1em;
-      padding: 0 10px;
-    }
+
+  .bottom-nav a {
+    margin: 5px 10px;
   }
-  
+
+  .pricing-content h1 {
+    font-size: 2.5em;
+  }
+
+  .pricing-content p {
+    font-size: 1em;
+    padding: 0 10px;
+  }
+}
+
+/* Add styles for the mobile dropdown menu */
+.mobile-menu {
+  display: none; /* Hide by default */
+  flex-direction: column; /* Stack links vertically */
+  background-color: rgba(255, 255, 255, 0.9); /* Translucent background */
+  position: absolute; /* Position it below the button */
+  top: 70px; /* Position it just below the navbar */
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensure it appears above other content */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.mobile-menu.open {
+  display: flex; /* Show when open */
+}
+
+.mobile-menu a {
+  padding: 10px; /* Add some padding */
+  text-align: center; /* Center the text */
+  color: #187795; /* Link color */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Media query to hide mobile menu button on larger screens */
+@media (min-width: 768px) {
+  .mobile-menu-button {
+    display: none; /* Hide the mobile menu button on desktop */
+  }
+}
+
+.overlay {
+  display: none; /* Hide by default */
+  position: fixed; /* Cover the entire viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 999; /* Ensure it appears above other content */
+}
