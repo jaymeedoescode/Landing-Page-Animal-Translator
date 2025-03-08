@@ -1,12 +1,4 @@
-<?php
-session_start();
 
-// Redirect to the login page if the user is not logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +8,7 @@ if (!isset($_SESSION['username'])) {
   <title>Animal Translator</title>
   <meta name="description" content="Animal Translator - Understand your pet's thoughts with our advanced translation app." />
   <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/scripts.js"></script>
 </head>
 <body>
   <!-- transparent navbar with blur effect -->

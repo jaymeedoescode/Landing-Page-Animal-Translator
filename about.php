@@ -17,6 +17,7 @@ if (!isset($_SESSION['username'])) {
   <title>About Page - Animal Translator</title>
   <link rel="stylesheet" href="css/style-about.css" />
   <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/scripts.js"></script>
   <style>
     /* Global body styling */
     body {

@@ -449,3 +449,91 @@ body {
         white-space: normal; /* Allow text to wrap on desktop */
     }
 }
+
+/* ================================================= */
+/* New Styles for Authentication Forms */
+/* ================================================= */
+
+/* Auth Section Styling */
+.auth-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container {
+    display: inline-block;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auth-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #187795;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #145f75;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+form label {
+    font-size: 1.1em;
+    color: #187795;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #187795;
+    outline: none;
+}
+
+form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #187795;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #145f75;
+}
+
+/* Error Message Styling */
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
