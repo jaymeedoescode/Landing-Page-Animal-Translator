@@ -1,3 +1,14 @@
+<?php
+// Start a PHP session
+session_start();
+
+// Redirect to the login page if the user is not logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -231,13 +242,13 @@
 
       <!-- Left-side links -->
       <div class="nav-links left">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <a href="index.php">Home</a>
+        <a href="about.php">About</a>
       </div>
 
       <!-- middle logo -->
       <div class="logo">
-        <a href="index.html"><img src="pictures/jake1.png" alt="Our Company" /></a>
+        <a href="index.php"><img src="pictures/jake1.png" alt="Our Company" /></a>
       </div>
 
       <!-- right links -->
@@ -250,8 +261,8 @@
 
   <!-- Mobile dropdown menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
+    <a href="index.php">Home</a>
+    <a href="about.php">About</a>
     <a href="#features">Features</a>
     <a href="#contact">Contact</a>
   </div>
@@ -324,10 +335,27 @@
     </div>
   </div>
 
+  <!-- Registration, Login, and Logout Section -->
+<section class="auth-section">
+  <div class="auth-container">
+    <?php
+    if (isset($_SESSION['username'])) {
+        // User is logged in
+        echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+        echo '<a href="logout.php" class="auth-button">Logout</a>';
+    } else {
+        // User is not logged in
+        echo '<a href="register.php" class="auth-button">Register</a>';
+        echo '<a href="login.php" class="auth-button">Login</a>';
+    }
+    ?>
+  </div>
+</section>
+
   <div class="bottom-nav" style="background-color: #187795; color: white; padding: 5px 0; text-align: center;">
-    <a href="index.html" style="color: white; margin: 0 15px;">Home</a>
+    <a href="index.php" style="color: white; margin: 0 15px;">Home</a>
     <a href="#features" style="color: white; margin: 0 15px;">Features</a>
-    <a href="about.html" style="color: white; margin: 0 15px;">About</a>
+    <a href="about.php" style="color: white; margin: 0 15px;">About</a>
     <a href="#contact" style="color: white; margin: 0 15px;">Contact</a>
   </div>
 
