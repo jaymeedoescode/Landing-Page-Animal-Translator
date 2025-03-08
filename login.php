@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Connect to the database
-    $conn = new mysqli('localhost', 'root', '', 'app-db');
+    $conn = new mysqli('sql105.infinityfree.com', 'if0_38470493', 'your_vPanel_password', 'if0_38470493_appdb');
     if ($conn->connect_error) {
         $error = "Database connection failed. Please try again later.";
     } else {
