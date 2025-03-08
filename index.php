@@ -6,6 +6,7 @@
   <title>Animal Translator</title>
   <meta name="description" content="Animal Translator - Understand your pet's thoughts with our advanced translation app." />
   <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/scripts.js"></script>
 </head>
 <body>
   <!-- transparent navbar with blur effect -->
@@ -20,17 +21,29 @@
 
       <!-- Left-side links -->
       <div class="nav-links left">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <a href="index.php">Home</a>
+        <a href="about.php">About</a>
       </div>
 
       <!-- middle logo -->
       <div class="logo">
-        <a href="index.html"><img src="pictures/jake1.png" alt="Our Company" /></a>
+        <a href="index.php"><img src="pictures/jake1.png" alt="Our Company" /></a>
       </div>
 
       <!-- right links -->
       <div class="nav-links right">
+        <?php
+        session_start();
+        if (isset($_SESSION['username'])) {
+            // User is logged in
+            echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+            echo '<a href="logout.php" class="auth-button">Logout</a>';
+        } else {
+            // User is not logged in
+            echo '<a href="register.php" class="auth-button">Register</a>';
+            echo '<a href="login.php" class="auth-button">Login</a>';
+        }
+        ?>
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact Us</a>
       </div>
@@ -39,8 +52,8 @@
 
   <!-- Mobile dropdown menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
+    <a href="index.php">Home</a>
+    <a href="about.php">About</a>
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact Us</a>
   </div>
@@ -88,10 +101,10 @@
 
   <!-- New bottom navigation links -->
   <div class="bottom-nav" style="background-color: #187795; color: white; padding: 10px; text-align: center;">
-    <a href="index.html" style="color: white; margin: 0 15px;">Home</a>
+    <a href="index.php" style="color: white; margin: 0 15px;">Home</a>
     <a href="#pricing" style="color: white; margin: 0 15px;">Pricing</a>
     <a href="#contact" style="color: white; margin: 0 15px;">Contact Us</a>
-    <a href="about.html" style="color: white; margin: 0 15px;">About</a>
+    <a href="about.php" style="color: white; margin: 0 15px;">About</a>
   </div>
 
   <script>
