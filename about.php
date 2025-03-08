@@ -254,6 +254,17 @@ if (!isset($_SESSION['username'])) {
 
       <!-- right links -->
       <div class="nav-links right">
+        <?php
+        if (isset($_SESSION['username'])) {
+            // User is logged in
+            echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+            echo '<a href="logout.php" class="auth-button">Logout</a>';
+        } else {
+            // User is not logged in
+            echo '<a href="register.php" class="auth-button">Register</a>';
+            echo '<a href="login.php" class="auth-button">Login</a>';
+        }
+        ?>
         <a href="#features">Features</a>
         <a href="#contact">Contact</a>
       </div>
@@ -335,23 +346,6 @@ if (!isset($_SESSION['username'])) {
         </p>
     </div>
   </div>
-
-  <!-- Registration, Login, and Logout Section -->
-<section class="auth-section">
-  <div class="auth-container">
-    <?php
-    if (isset($_SESSION['username'])) {
-        // User is logged in
-        echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
-        echo '<a href="logout.php" class="auth-button">Logout</a>';
-    } else {
-        // User is not logged in
-        echo '<a href="register.php" class="auth-button">Register</a>';
-        echo '<a href="login.php" class="auth-button">Login</a>';
-    }
-    ?>
-  </div>
-</section>
 
   <div class="bottom-nav" style="background-color: #187795; color: white; padding: 5px 0; text-align: center;">
     <a href="index.php" style="color: white; margin: 0 15px;">Home</a>

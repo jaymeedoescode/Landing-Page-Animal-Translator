@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +32,18 @@
 
       <!-- right links -->
       <div class="nav-links right">
+        <?php
+        session_start();
+        if (isset($_SESSION['username'])) {
+            // User is logged in
+            echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+            echo '<a href="logout.php" class="auth-button">Logout</a>';
+        } else {
+            // User is not logged in
+            echo '<a href="register.php" class="auth-button">Register</a>';
+            echo '<a href="login.php" class="auth-button">Login</a>';
+        }
+        ?>
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact Us</a>
       </div>
@@ -86,24 +96,6 @@
         Please let us know if your software is failing as this could be an issue with the neurotransmitters we have imbedded in the iguanas under Cupertino, CA.
       </p>
       <a href="https://github.com/jaymeedoescode/Landing-Page-Animal-Translator" class="cta-button" target="_blank">Go Now</a>
-    </div>
-  </section>
-
-  <!-- Registration, Login, and Logout Section -->
-  <section class="auth-section">
-    <div class="auth-container">
-      <?php
-      session_start();
-      if (isset($_SESSION['username'])) {
-          // User is logged in
-          echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
-          echo '<a href="logout.php" class="auth-button">Logout</a>';
-      } else {
-          // User is not logged in
-          echo '<a href="register.php" class="auth-button">Register</a>';
-          echo '<a href="login.php" class="auth-button">Login</a>';
-      }
-      ?>
     </div>
   </section>
 
