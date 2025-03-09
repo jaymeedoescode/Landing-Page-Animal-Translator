@@ -92,7 +92,7 @@ body {
 .nav-links.left {
   display: flex;
   justify-content: flex-start;
-  gap: 20px;
+  gap: 15px;
   position: absolute;
   left: 10%;
   align-items: center;
@@ -117,7 +117,7 @@ body {
 .nav-links.right {
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
+  gap: 15px;
   position: absolute;
   right: 10%;
   align-items: center;
@@ -137,9 +137,11 @@ body {
 }
 
 /* Welcome message styling */
-.nav-links p {
+.welcome-message {
   margin: 0;
   padding: 0 10px;
+  color: #187795;
+  font-weight: bold;
 }
 
 /* hero section with blurred raccoon background */

@@ -25,7 +25,10 @@
         <a href="about.php">About</a>
         <?php
         session_start();
-        if (!isset($_SESSION['username'])) {
+        if (isset($_SESSION['username'])) {
+            // Display welcome message on left side when logged in
+            echo '<p class="welcome-message">Welcome, ' . $_SESSION['username'] . '!</p>';
+        } else {
             // Display login button on left side when not logged in
             echo '<a href="login.php" class="auth-button">Login</a>';
         }
@@ -41,8 +44,7 @@
       <div class="nav-links right">
         <?php
         if (isset($_SESSION['username'])) {
-            // User is logged in
-            echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+            // Only show logout button on right side when logged in
             echo '<a href="logout.php" class="auth-button">Logout</a>';
         } else {
             // Display register button on right side when not logged in
@@ -61,7 +63,7 @@
     <a href="about.php">About</a>
     <?php
     if (isset($_SESSION['username'])) {
-        echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+        echo '<p class="welcome-message">Welcome, ' . $_SESSION['username'] . '!</p>';
         echo '<a href="logout.php">Logout</a>';
     } else {
         echo '<a href="login.php">Login</a>';
