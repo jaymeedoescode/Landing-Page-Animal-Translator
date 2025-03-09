@@ -97,9 +97,7 @@ phpMyAdmin Interface
 phpMyAdmin Interface
 //IMAGE OF phpMyAdmin Interface HERE
 
-Users Table Structure
-Users Table Structure
-//IMAGE OF Users Table Structure HERE
+image.png
 
 Ratings Table Structure (Example)
 Ratings Table Structure
