@@ -5,6 +5,7 @@ Animal translator software landing page for software dev assignment. Jaime and I
 
 ## Workflow Split
 
+
 ### Jaime’s Responsibilities:
 - Create the GitHub repo & add the instructor/TAs.
 - Build `index.html` (main landing page).
@@ -27,6 +28,9 @@ Animal translator software landing page for software dev assignment. Jaime and I
 - Confirm the 50/50 split in the README before submission.
 
 ---
+
+###DEPLOYMENT URL:
+[website deployment](animals.great-site.net)
 
 # CRUD Web Application
 Assignment 2 for software dev - Jaime & Abdu - A web application for user authentication and CRUD functionality using PHP and MySQL.
@@ -92,16 +96,40 @@ CREATE TABLE `users` (
   PRIMARY KEY (`username`)
 );
 
-Screenshots
-phpMyAdmin Interface
-phpMyAdmin Interface
-//IMAGE OF phpMyAdmin Interface HERE
+```
 
-image.png
+## Screenshots
 
-Ratings Table Structure (Example)
-Ratings Table Structure
-//IMAGE OF Ratings Table Structure HERE
+### 1. phpMyAdmin Interface
+![phpMyAdmin Interface](pictures/localphp.png)
+
+### 2. Users Table Structure
+![Users Table Structure](pictures/imgtable.png)
+
+### 3. Login Page
+![Login Page](pictures/login.png)
+
+### 4. Registration Page
+![Registration Page](pictures/register.png)
+
+### 5. Software Bought Structure
+![Software Bought Structure](pictures/softwarebought.png)
+
+### 6. Software Bought SQL
+![Software Bought SQL](pictures/softwareboughtSQL.png)
+
+### 7. SSL/TLS Certificate
+![SSL/TLS Certificate](pictures/SSL.png)
+
+### 8. SUPER SSL
+![SUPER SSL](pictures/SUPERSSL.png)
+
+### 9. Users Image
+![Users Image](pictures/usersimage.png)
+
+![localphp-or server php](pictures/screenshot.png)
+
+
 
 User Authentication and Session Management
 Registration:
@@ -202,6 +230,153 @@ Logged-in users are redirected away from the registration page.
 
 5. Error Messages Are Clear and User-Friendly:
 All error messages (e.g., duplicate username, incorrect password) are clear and helpful.
+
+## How to Use the Application
+
+### User Registration and Authentication
+
+1. **Register a New Account:**
+   - Navigate to the registration page by clicking "Register" in the navigation menu
+   - Enter a unique username
+   - Create a password (minimum 10 characters)
+   - Confirm your password
+   - Click "Register" to create your account
+
+2. **Login to Your Account:**
+   - Navigate to the login page
+   - Enter your username and password
+   - Click "Login" to access your dashboard
+
+3. **Logout:**
+   - Click the "Logout" button in the navigation menu to end your session
+  
+
+## Database Structure and SQL Queries
+
+### SQL Query to Create the Database:
+```sql
+CREATE DATABASE `app-db`;
+```
+
+### SQL Query to Create the Users Table:
+```sql
+CREATE TABLE `users` (
+  `username` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`username`)
+);
+```
+
+### SQL Query to Create the Purchases Table:
+```sql
+CREATE TABLE `purchases` (
+  `purchase_id` int(8) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `animal` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `time/date` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`purchase_id`),
+  KEY `TIME/DATE` (`time/date`),
+  KEY `ANIMAL` (`animal`),
+  KEY `USERNAME` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+Note: The `purchase_id` field uses MySQL's autoincrement (AI) feature to automatically assign a unique ID to each new purchase.
+
+## How to Use the Application
+
+### User Registration and Authentication
+
+1. **Register a New Account:**
+   - Navigate to the registration page by clicking "Register" in the navigation menu
+   - Enter a unique username
+   - Create a password (minimum 10 characters)
+   - Confirm your password
+   - Click "Register" to create your account
+
+2. **Login to Your Account:**
+   - Navigate to the login page
+   - Enter your username and password
+   - Click "Login" to access your dashboard
+
+3. **Logout:**
+   - Click the "Logout" button in the navigation menu to end your session
+
+### CRUD Functionality for Animal Translator Software
+
+1. **Create (Add New Software):**
+   - From the dashboard, click on "Add New Software"
+   - Fill out the required fields:
+     - Software Name
+     - Animal Type
+     - Description
+     - Price
+   - Click "Save" to add the new software to the database
+
+2. **Read (View Software):**
+   - All available software will be displayed on the dashboard after login
+   - You can see software added by all users, including details like name, animal type, and price
+   - Click on any software name to view more details
+
+3. **Update (Edit Software):**
+   - To edit software that you've added:
+     - Find the software in the list
+     - Click the "Edit" button next to your software entry
+     - Update the information in the form that appears
+     - Click "Save Changes" to update the database
+   - Note: You can only edit software that you've added, not software added by other users
+
+4. **Delete (Remove Software):**
+   - To delete software that you've added:
+     - Find the software in the list
+     - Click the "Delete" button next to your software entry
+     - Confirm deletion when prompted
+   - Note: You can only delete software that you've added, not software added by other users
+
+### Tips for Using the Application
+
+- All fields are required when adding or editing software
+- Price must be entered as a numeric value
+- Your username will be displayed at the top of each page when logged in
+- You'll see all software entries from all users, but can only modify your own
+
+### CRUD Functionality for Animal Translator Software
+
+1. **Create (Add New Software):**
+   - From the dashboard, click on "Add New Software"
+   - Fill out the required fields:
+     - Software Name
+     - Animal Type
+     - Description
+     - Price
+   - Click "Save" to add the new software to the database
+
+2. **Read (View Software):**
+   - All available software will be displayed on the dashboard after login
+   - You can see software added by all users, including details like name, animal type, and price
+   - Click on any software name to view more details
+
+3. **Update (Edit Software):**
+   - To edit software that you've added:
+     - Find the software in the list
+     - Click the "Edit" button next to your software entry
+     - Update the information in the form that appears
+     - Click "Save Changes" to update the database
+   - Note: You can only edit software that you've added, not software added by other users
+
+4. **Delete (Remove Software):**
+   - To delete software that you've added:
+     - Find the software in the list
+     - Click the "Delete" button next to your software entry
+     - Confirm deletion when prompted
+   - Note: You can only delete software that you've added, not software added by other users
+
+### Tips for Using the Application
+
+- All fields are required when adding or editing software
+- Price must be entered as a numeric value
+- Your username will be displayed at the top of each page when logged in
+- You'll see all software entries from all users, but can only modify your own
 
 Contribution
 Jaime: 50%
