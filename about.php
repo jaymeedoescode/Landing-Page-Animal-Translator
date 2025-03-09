@@ -54,23 +54,23 @@ if (!isset($_SESSION['username'])) {
       align-items: center;
       width: 100%;
       max-width: 1200px; 
+      position: relative;
     }
 
     /* left links */
     .nav-links.left {
       display: flex;
       justify-content: flex-start;
-      gap: 20px; 
+      gap: 20px;
+      position: absolute;
+      left: 0;
     }
 
     /* middle logo */
     .logo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       position: absolute;
       left: 50%;
-      transform: translateX(-50%); 
+      transform: translateX(-50%);
     }
 
     .logo img {
@@ -82,7 +82,9 @@ if (!isset($_SESSION['username'])) {
     .nav-links.right {
       display: flex;
       justify-content: flex-end;
-      gap: 20px; 
+      gap: 20px;
+      position: absolute;
+      right: 0;
     }
 
     /* styles for the links */
@@ -96,6 +98,22 @@ if (!isset($_SESSION['username'])) {
     .nav-links a:hover {
       background-color: rgba(255, 255, 255, 0.2);
       border-radius: 4px;
+    }
+
+    /* Auth links styling */
+    .auth-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .auth-links p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .feature-links {
+      display: flex;
+      gap: 20px;
     }
 
     /* bottom of page nav bar */
@@ -229,6 +247,17 @@ if (!isset($_SESSION['username'])) {
       height: 40vh;
       background-color: white;
     }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none !important;
+      }
+      
+      .mobile-menu-button {
+        display: flex !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -245,6 +274,15 @@ if (!isset($_SESSION['username'])) {
       <div class="nav-links left">
         <a href="index.php">Home</a>
         <a href="about.php">About</a>
+        <?php
+        if (isset($_SESSION['username'])) {
+            // User is logged in - show welcome message on left side
+            echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+        } else {
+            // User is not logged in - show register on left side
+            echo '<a href="register.php" class="auth-button">Register</a>';
+        }
+        ?>
       </div>
 
       <!-- middle logo -->
@@ -256,12 +294,10 @@ if (!isset($_SESSION['username'])) {
       <div class="nav-links right">
         <?php
         if (isset($_SESSION['username'])) {
-            // User is logged in
-            echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+            // User is logged in - show logout on right side
             echo '<a href="logout.php" class="auth-button">Logout</a>';
         } else {
-            // User is not logged in
-            echo '<a href="register.php" class="auth-button">Register</a>';
+            // User is not logged in - show login on right side
             echo '<a href="login.php" class="auth-button">Login</a>';
         }
         ?>
@@ -275,6 +311,15 @@ if (!isset($_SESSION['username'])) {
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.php">Home</a>
     <a href="about.php">About</a>
+    <?php
+    if (isset($_SESSION['username'])) {
+        echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+        echo '<a href="logout.php">Logout</a>';
+    } else {
+        echo '<a href="register.php">Register</a>';
+        echo '<a href="login.php">Login</a>';
+    }
+    ?>
     <a href="#features">Features</a>
     <a href="#contact">Contact</a>
   </div>

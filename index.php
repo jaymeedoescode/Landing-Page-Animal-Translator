@@ -23,6 +23,13 @@
       <div class="nav-links left">
         <a href="index.php">Home</a>
         <a href="about.php">About</a>
+        <?php
+        session_start();
+        if (!isset($_SESSION['username'])) {
+            // Display login button on left side when not logged in
+            echo '<a href="login.php" class="auth-button">Login</a>';
+        }
+        ?>
       </div>
 
       <!-- middle logo -->
@@ -33,15 +40,13 @@
       <!-- right links -->
       <div class="nav-links right">
         <?php
-        session_start();
         if (isset($_SESSION['username'])) {
             // User is logged in
             echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
             echo '<a href="logout.php" class="auth-button">Logout</a>';
         } else {
-            // User is not logged in
+            // Display register button on right side when not logged in
             echo '<a href="register.php" class="auth-button">Register</a>';
-            echo '<a href="login.php" class="auth-button">Login</a>';
         }
         ?>
         <a href="#pricing">Pricing</a>
@@ -54,6 +59,15 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.php">Home</a>
     <a href="about.php">About</a>
+    <?php
+    if (isset($_SESSION['username'])) {
+        echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+        echo '<a href="logout.php">Logout</a>';
+    } else {
+        echo '<a href="login.php">Login</a>';
+        echo '<a href="register.php">Register</a>';
+    }
+    ?>
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact Us</a>
   </div>

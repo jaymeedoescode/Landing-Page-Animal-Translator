@@ -95,6 +95,7 @@ body {
   gap: 20px;
   position: absolute;
   left: 10%;
+  align-items: center;
 }
 
 /* middle logo */
@@ -119,6 +120,7 @@ body {
   gap: 20px;
   position: absolute;
   right: 10%;
+  align-items: center;
 }
 
 /* link styling */
@@ -132,6 +134,12 @@ body {
 .nav-links a:hover {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
+}
+
+/* Welcome message styling */
+.nav-links p {
+  margin: 0;
+  padding: 0 10px;
 }
 
 /* hero section with blurred raccoon background */
@@ -336,6 +344,22 @@ body {
   color: #187795;
 }
 
+/* Auth Button styling */
+.auth-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #187795;
+  color: white !important;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #145f75;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .image-container {
@@ -442,6 +466,14 @@ body {
   text-decoration: none; /* Remove underline */
 }
 
+/* Mobile menu welcome message */
+.mobile-menu p {
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+  color: #187795;
+}
+
 /* Media query to hide mobile menu button on larger screens */
 @media (min-width: 768px) {
   .mobile-menu-button {
@@ -461,10 +493,9 @@ body {
 }
 
 /* ================================================= */
-/* New Styles for Authentication Forms */
+/* Auth Section Styling */
 /* ================================================= */
 
-/* Auth Section Styling */
 .auth-section {
   text-align: center;
   padding: 20px;
@@ -480,22 +511,6 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.auth-button {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: #187795;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 1.1em;
-  transition: background-color 0.3s ease;
-}
-
-.auth-button:hover {
-  background-color: #145f75;
 }
 
 /* Form Styling */
