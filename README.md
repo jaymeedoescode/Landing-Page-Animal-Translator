@@ -95,22 +95,34 @@ CREATE TABLE `users` (
 Screenshots
 
 
-//IMAGE OF phpMyAdmin Interface HERE
-![localphp](https://github.com/user-attachments/assets/fa286c94-ac55-45fa-8dfd-b101752ebdca)
+## Screenshots
 
-//USERS TABLE STRUCTURE
-<img width="1280" alt="imgtable" src="https://github.com/user-attachments/assets/fc4e24ab-596b-4093-932e-204c1ac494c6" />
+### 1. phpMyAdmin Interface
+![phpMyAdmin Interface](pictures/localphp.png)
 
-//SOFTWARE BOUGHT STRUCTURE
-![softwarebought](https://github.com/user-attachments/assets/4abf1dec-8932-45c0-944d-d4958afbed45)
+### 2. Users Table Structure
+![Users Table Structure](pictures/imgtable.png)
 
-![usersimage](https://github.com/user-attachments/assets/bbc71d38-63da-44c5-8a62-bc1cf379cb70)
+### 3. Login Page
+![Login Page](pictures/login.png)
 
-![SSL](https://github.com/user-attachments/assets/20cf73c3-825e-4cbe-b530-fa7d984f0699)
+### 4. Registration Page
+![Registration Page](pictures/register.png)
 
-![login function](https://github.com/user-attachments/assets/b416a5af-35c1-4070-9653-1209a5aad676)
+### 5. Software Bought Structure
+![Software Bought Structure](pictures/softwarebought.png)
 
-![register function](https://github.com/user-attachments/assets/d26dafca-fd28-447e-a4bf-d21e9a7752d8)
+### 6. Software Bought SQL
+![Software Bought SQL](pictures/softwareboughtSQL.png)
+
+### 7. SSL/TLS Certificate
+![SSL/TLS Certificate](pictures/SSL.png)
+
+### 8. SUPER SSL
+![SUPER SSL](pictures/SUPERSSL.png)
+
+### 9. Users Image
+![Users Image](pictures/usersimage.png)
 
 
 
