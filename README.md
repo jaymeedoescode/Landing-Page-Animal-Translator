@@ -28,6 +28,9 @@ Animal translator software landing page for software dev assignment. Jaime and I
 
 ---
 
+###DEPLOYMENT URL:
+animals.great-site.net
+
 # CRUD Web Application
 Assignment 2 for software dev - Jaime & Abdu - A web application for user authentication and CRUD functionality using PHP and MySQL.
 
