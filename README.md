@@ -119,7 +119,7 @@ CREATE TABLE `users` (
 ![Software Bought SQL](pictures/softwareboughtSQL.png)
 
 ### 7. SSL/TLS Certificate
-![SSL/TLS Certificate](pictures/SSL1.png)
+![SSL/TLS Certificate](pictures/SSL.png)
 
 ### 8. SUPER SSL
 ![SUPER SSL](pictures/SUPERSSL.png)
