@@ -93,15 +93,20 @@ CREATE TABLE `users` (
 );
 
 Screenshots
-phpMyAdmin Interface
-phpMyAdmin Interface
+
+
 //IMAGE OF phpMyAdmin Interface HERE
+![localphp](https://github.com/user-attachments/assets/fa286c94-ac55-45fa-8dfd-b101752ebdca)
 
-image.png
+//USERS TABLE STRUCTURE
+<img width="1280" alt="imgtable" src="https://github.com/user-attachments/assets/fc4e24ab-596b-4093-932e-204c1ac494c6" />
 
-Ratings Table Structure (Example)
-Ratings Table Structure
-//IMAGE OF Ratings Table Structure HERE
+//SOFTWARE BOUGHT STRUCTURE
+![softwarebought](https://github.com/user-attachments/assets/4abf1dec-8932-45c0-944d-d4958afbed45)
+
+![usersimage](https://github.com/user-attachments/assets/bbc71d38-63da-44c5-8a62-bc1cf379cb70)
+
+![SSL](https://github.com/user-attachments/assets/20cf73c3-825e-4cbe-b530-fa7d984f0699)
 
 User Authentication and Session Management
 Registration:
