@@ -92,8 +92,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`username`)
 );
 
-Screenshots
-
+```
 
 ## Screenshots
 
