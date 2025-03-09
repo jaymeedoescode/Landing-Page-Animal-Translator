@@ -108,6 +108,12 @@ Screenshots
 
 ![SSL](https://github.com/user-attachments/assets/20cf73c3-825e-4cbe-b530-fa7d984f0699)
 
+![login function](https://github.com/user-attachments/assets/b416a5af-35c1-4070-9653-1209a5aad676)
+
+![register function](https://github.com/user-attachments/assets/d26dafca-fd28-447e-a4bf-d21e9a7752d8)
+
+
+
 User Authentication and Session Management
 Registration:
 
