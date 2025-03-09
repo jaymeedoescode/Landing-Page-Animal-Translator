@@ -344,7 +344,16 @@ if (!isset($_SESSION['username'])) {
             Please consult with your veterinarian or animal behaviorist before making any significant changes to your pet's routine based on translations provided by our service. 
             Animal Translator and Co. disclaims any liability for damages resulting from the use of our services.
         </p>
-    </div>
+       
+
+        <div style="display: inline-flex; gap: 10px; border: 1px solid black; padding: 10px;">
+          <a href="makePurchase.php" class="cta-button" target="_blank">Buy NOW!</a>
+          <a href="getPurchase.php" class="cta-button" target="_blank">Find a previous purchase</a>
+          <a href="updatePurchase.php" class="cta-button" target="_blank">Update a purchase</a>
+          <a href="refundPurchase.php" class="cta-button" target="_blank">Refund a Purchase</a>
+        </div>
+
+
   </div>
 
   <div class="bottom-nav" style="background-color: #187795; color: white; padding: 5px 0; text-align: center;">

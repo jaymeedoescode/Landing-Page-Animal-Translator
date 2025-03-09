@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="confirm_password">Confirm Password:</label>
         <input type="password" id="confirm_password" name="confirm_password" required><br>
 
-        <button type="submit">Register</button>
+        <input type="submit">Register</input>
     </form>
 
     <p>Already have an account? <a href="login.php">Login here</a>.</p>

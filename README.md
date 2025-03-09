@@ -180,12 +180,20 @@ Upload your project files to the InfinityFree server using FTP or their file man
 
 Set up the database on InfinityFree using the same SQL queries provided above.
 
+Production URL: http://animals.great-site.net
+
 2. Set Up SSL/TLS Certificate:
 Log in to your InfinityFree account and navigate to the Control Panel.
 
 Click on "SSL/TLS" and follow the instructions to create and deploy a free SSL certificate.
 
 Wait a few minutes for the certificate to activate. You should see a green padlock in the browser's address bar.
+
+Verification Pictures (incomplete):
+homework2pics/index.png
+homework2pics/register.png
+homework2pics/login.png
+homework2pics/Certificate unfinished.png
 
 Additional Checks
 1. SQL Queries Are Parameterized:

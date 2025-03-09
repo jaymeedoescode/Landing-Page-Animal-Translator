@@ -85,6 +85,9 @@
       <p>
         We have all sorts of deals! Originally the base price was $9999.99 but for today only we are offering it for $20! Buy now!
       </p>
+      <a href="makePurchase.php">
+        <button>BUY NOW!!</button>
+      </a>
     </div>
   </section>
 
