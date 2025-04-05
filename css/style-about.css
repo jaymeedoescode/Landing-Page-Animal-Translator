@@ -48,14 +48,36 @@ body {
     left: 10%;
 }
 
-/* middle logo */
+
+/* Welcome message styling */
+.welcome-message {
+    margin: 0;
+    padding: 0;
+    color: #187795;
+    font-weight: bold;
+}
+
+/* Ensure the logo is above other elements */
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 5;
+}
+
+/* Auth button styling (already exists in your CSS but ensuring it's properly defined) */
+.auth-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #187795;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #145f75;
 }
 
 .logo img {
