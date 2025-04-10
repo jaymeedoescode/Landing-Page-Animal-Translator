@@ -390,3 +390,124 @@ Contribution
 Jaime: 50%
 
 Abdu: 50%
+
+# Animal Translator App
+
+## Overview
+Welcome to the Animal Translator App! This is a React Native app built for a class project. The app allows users to log in, register, and view animal translations. It connects to a backend server for user authentication and animal translation data.
+
+This repository contains both the frontend (React Native) and backend (PHP) components, with the frontend being handled by me, [Your Name], and the backend by my partner, [Partner's Name].
+
+## How to Run the Frontend
+
+### Prerequisites
+Before you can run the app locally, make sure you have the following installed:
+- **Node.js** (includes npm) - Download from [Node.js](https://nodejs.org/)
+- **Expo CLI** - Install using npm:
+  ```bash
+  npm install -g expo-cli
+  ```
+
+### Running Locally
+1. **Clone the Repository**: Clone this repository to your local machine:
+   ```bash
+   git clone https://github.com/jaymeedoescode/Landing-Page-Animal-Translator.git
+   cd animal-translator-app
+   ```
+
+2. **Install Dependencies**: Run this command to install the project dependencies:
+   ```bash
+   npm install
+   ```
+
+3. **Start the Project**: Launch the development server:
+   ```bash
+   npm start
+   ```
+   This will open Expo DevTools in your browser.
+   You can either:
+   - Scan the QR code with Expo Go on your phone (available on both Android and iOS).
+   - Or press 'a' to launch the app in an Android emulator (make sure the emulator is running).
+
+### Change the IP Address
+Since the app connects to a backend server, you need to update the IP address used for API requests.
+
+1. **Locate the IP Address in the Code**: In HomeScreen.tsx, LoginScreen.tsx, and other files where API calls are made, find this line:
+   ```javascript
+   fetch("http://<YOUR-IP>/login.php")
+   ```
+
+2. **Update the IP Address**: Replace `<YOUR-IP>` with your local machine's IP address (e.g., http://192.168.x.x).
+   - For Windows: Run `ipconfig` in Command Prompt to find your IPv4 address.
+   - For macOS/Linux: Use `ifconfig` to find your local IP.
+
+3. **Test It**: After updating the IP address in the code, restart your Expo project. The app should now connect to your backend server.
+
+
+## Backend Setup and Configuration
+
+### Security Best Practices
+
+1. **Environment Variables**: Never store sensitive information (like database credentials) directly in your code.
+   - Create a `.env` file to store sensitive information
+   - Add this file to your `.gitignore` to ensure it's not committed to version control
+   - Example `.env` file:
+     ```
+     DB_HOST=your_database_host
+     DB_USERNAME=your_database_username
+     DB_PASSWORD=your_database_password
+     DB_NAME=your_database_name
+     ```
+
+2. **Create a sample environment file**:
+   - Provide a `.env.example` file with placeholder values
+   - Example:
+     ```
+     DB_HOST=localhost
+     DB_USERNAME=db_user
+     DB_PASSWORD=your_password_here
+     DB_NAME=animal_translator
+     ```
+
+3. **Update config.php to use environment variables**:
+   ```php
+   <?php
+   // Load environment variables from .env file (using a library like phpdotenv)
+   
+   define("DB_HOST", getenv('DB_HOST'));
+   define("DB_USERNAME", getenv('DB_USERNAME'));
+   define("DB_PASSWORD", getenv('DB_PASSWORD')); 
+   define("DB_DATABASE_NAME", getenv('DB_NAME'));
+   ```
+
+### Error Handling and Debugging
+
+Common backend issues and their solutions:
+
+1. **Database Connection Errors**
+   - Check that your `.env` file exists and contains the correct credentials
+   - Verify that your database server is running and accessible from your hosting environment
+   - Some hosting providers (like InfinityFree) may restrict database access to their own servers
+
+2. **SQL Query Issues**
+   - Always use prepared statements to prevent SQL injection (your code already does this)
+   - Fixed incorrect SQL in the update method:
+     ```php
+     // Correct syntax
+     $sql = "UPDATE animals SET animal = ? WHERE purchase_id = ?";
+     ```
+
+3. **File Path Issues**
+   - Ensure all file paths are correct in your `require` statements
+   - Use absolute paths with the `PROJECT_ROOT_PATH` constant
+
+### API Endpoint Structure
+The backend API follows RESTful conventions:
+- `/api/animal/read` - Get all animals
+- `/api/user/list` - Get all users
+- `/api/user/create` - Add a new user/animal translation
+
+## Credits
+- Frontend: Jaime 50%
+- Backend: Abdu 50%
+

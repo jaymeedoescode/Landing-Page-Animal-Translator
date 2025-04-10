@@ -1,31 +1,39 @@
 <?php
 class AnimalController extends BaseController {
-    /** 
-* "/user/list" Endpoint - Get list of users 
-*/
-    public function listAction() {
+
+    // Add the 'read' action to fetch all animals
+    public function readAction() {
         $message = '';
         $arrQueryStringParams = $this->getQueryStringParams();
 
-        if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'GET') {
+        if (strtoupper($_SERVER["REQUEST_METHOD"]) == 'GET') {  
             try {
-                $userModel = new UserModel();
-
-                $intLimit = 10;
-                if (isset($arrQueryStringParams['limit']) && $arrQueryStringParams['limit']) {
-                    $intLimit = $arrQueryStringParams['limit'];
+                global $conn; // Assuming $conn is your database connection
+                $sql = "SELECT * FROM animals"; // Query all animals from the database
+                $result = $conn->query($sql);
+                
+                // Check if there are any results
+                if ($result->num_rows > 0) {
+                    $animals = [];
+                    while ($row = $result->fetch_assoc()) {
+                        $animals[] = $row; // Add each animal to the array
+                    }
+                    // Return the animals as JSON
+                    $responseData = json_encode($animals);
+                } else {
+                    $message = 'No animals found';
+                    $responseData = json_encode([]);
                 }
-                $arrUsers = $userModel->getUsers($intLimit);
-                $responseData = json_encode($arrUsers);
             } catch (Error $e) {
-                $message = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage().' Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
             $message = 'Method not supported';
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
-        // send output 
+
+        // Send output 
         if (!$message) {
             $this->sendOutput(
                 $responseData,
@@ -37,84 +45,4 @@ class AnimalController extends BaseController {
             );
         }
     }
-
-
-    public function createAction($username, $animal) {
-        $message = '';
-        $arrQueryStringParams = $this->getQueryStringParams();
-
-        if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'POST') {    
-            global $conn;
-        
-            $rowcount = "SELECT COUNT(*) FROM animals";
-            $result = $conn->query($rowcount);
-            $row = $result->fetch_assoc();
-        
-            $purchase_id = $row['COUNT(*)'] + 1;
-        
-            $currentTimestamp = date('Y-m-d H:i:s');
-        
-            $sql = "INSERT INTO `animals` (`purchase_id`, `username`, `animal`, `time_date`) VALUES (?, ?, ?, ?)";
-        
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("isss", $purchase_id, $username, $animal, $currentTimestamp);
-            if ($stmt->execute()) {
-                return "Congratulations! You can now talk to " . $animal . "s!     Your purchase ID is: " . $purchase_id . "Thank you for shopping with us today!";
-            } else {
-                echo("Uh oh, we couldn't complete your purchase: " . $conn->error);
-            }
-    }
 }
-
-    public function deleteAction() {
-        $message = '';
-        $arrQueryStringParams = $this->getQueryStringParams();
-
-        if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'DELETE') {    
-            global $conn;
-
-            $input = json_decode(file_get_contents("php://input"), true);
-            $purchase_id = $input['purchase_id'];
-            $sql = "DELETE FROM `animals` WHERE purchase_id=?";
-
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $purchase_id);
-
-            if ($stmt->execute()) {
-                return "your purchase successfully refunded";
-            } else {
-                echo("uh oh, we couldn't delete you bc: " . $conn->error); }
-        }
-    }
-
-
-    public function updateAction($purchase_id, $animal) {
-        $message = '';
-        $arrQueryStringParams = $this->getQueryStringParams();
-
-        if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'PATCH') {    
-
-            global $conn;
-        
-            $input = json_decode(file_get_contents("php://input"), true);
-            $purchase_id = $input['purchase_id'];
-            $animal = $input['animal'];
-            
-            $sql = "UPDATE animals SET animal=? WHERE purchase_id=?";
-
-        
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("si", $animal,  $purchase_id);
-        
-            if ($stmt->execute()) {
-                return "Your purchase has successfully been updated";
-            } else {
-                echo("Uh oh, we couldn't delete you because: " . $conn->error);
-            }
-    
-        }
-    }
-
-}
-
-
