@@ -22,7 +22,19 @@ if (!isset($uri[2]) || !isset($uri[3])) {
     exit();
 }
 
+<<<<<<< HEAD
 // Include necessary controllers (no namespace)
+=======
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+>>>>>>> 37c2a579aed0c2b898f8496829f430b43e0a8560
 require PROJECT_ROOT_PATH . "/Controller/Api/UserController.php";
 require PROJECT_ROOT_PATH . "/Controller/Api/AnimalController.php";
 
