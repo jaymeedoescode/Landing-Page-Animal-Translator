@@ -71,6 +71,7 @@ if (!isset($_SESSION['username'])) {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 5;
     }
 
     .logo img {
@@ -100,15 +101,32 @@ if (!isset($_SESSION['username'])) {
       border-radius: 4px;
     }
 
+    /* Welcome message styling */
+    .welcome-message {
+      margin: 0;
+      padding: 0;
+      color: #187795;
+      font-weight: bold;
+    }
+
     /* Auth links styling */
     .auth-links {
       display: flex;
       gap: 20px;
     }
 
-    .auth-links p {
-      margin: 0;
-      padding: 0;
+    .auth-button {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #187795;
+      color: white !important;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .auth-button:hover {
+      background-color: #145f75;
     }
 
     .feature-links {
@@ -274,12 +292,11 @@ if (!isset($_SESSION['username'])) {
       <div class="nav-links left">
         <a href="index.php">Home</a>
         <a href="about.php">About</a>
+        <!-- Welcome message will be on the left side -->
         <?php
         if (isset($_SESSION['username'])) {
-            // User is logged in - show welcome message on left side
-            echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+            echo '<p class="welcome-message">Welcome, ' . $_SESSION['username'] . '!</p>';
         } else {
-            // User is not logged in - show register on left side
             echo '<a href="register.php" class="auth-button">Register</a>';
         }
         ?>
@@ -292,12 +309,11 @@ if (!isset($_SESSION['username'])) {
 
       <!-- right links -->
       <div class="nav-links right">
+        <!-- Logout button will be on the right side -->
         <?php
         if (isset($_SESSION['username'])) {
-            // User is logged in - show logout on right side
             echo '<a href="logout.php" class="auth-button">Logout</a>';
         } else {
-            // User is not logged in - show login on right side
             echo '<a href="login.php" class="auth-button">Login</a>';
         }
         ?>
@@ -389,7 +405,16 @@ if (!isset($_SESSION['username'])) {
             Please consult with your veterinarian or animal behaviorist before making any significant changes to your pet's routine based on translations provided by our service. 
             Animal Translator and Co. disclaims any liability for damages resulting from the use of our services.
         </p>
-    </div>
+       
+
+        <div style="display: inline-flex; gap: 10px; border: 1px solid black; padding: 10px;">
+          <a href="makePurchase.php" class="cta-button" target="_blank">Buy NOW!</a>
+          <a href="getPurchase.php" class="cta-button" target="_blank">Find a previous purchase</a>
+          <a href="updatePurchase.php" class="cta-button" target="_blank">Update a purchase</a>
+          <a href="refundPurchase.php" class="cta-button" target="_blank">Refund a Purchase</a>
+        </div>
+
+
   </div>
 
   <div class="bottom-nav" style="background-color: #187795; color: white; padding: 5px 0; text-align: center;">
