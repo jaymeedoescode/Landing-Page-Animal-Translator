@@ -3,40 +3,6 @@ class UserController extends BaseController {
     /** 
 * "/user/list" Endpoint - Get list of users 
 */
-    public function listAction() {
-        $message = '';
-
-        if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'GET') {
-            try {
-                global $conn;
-
-                $animalModel = new AnimalModel();
-                $value = $animalModel->getPurchases();
-                $responseData = json_encode($value);
-            } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
-                $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
-            }
-            
-        } else {
-            $message = 'Method not supported';
-            $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
-        }
-
-
-        // send output 
-        if (!$message) {
-            $this->sendOutput(
-                $responseData,
-                array('Content-Type: application/json', 'HTTP/1.1 200 OK')
-            );
-        } else {
-            $this->sendOutput(json_encode(array('error' => $message)), 
-                array('Content-Type: application/json', $strErrorHeader)
-            );
-        }
-    }
-
 
     public function createAction() {
         $message = '';
@@ -46,14 +12,22 @@ class UserController extends BaseController {
                 global $conn;
 
                 $input = json_decode(file_get_contents("php://input"), true);
-                $username = $input['username'];
-                $animal = $input['animal'];
+                $username = $input['username'] ?? null;
+                $password = $input['password'] ?? null;
 
-                $animalModel = new AnimalModel();
-                $sql = $animalModel->createPurchase($username, $animal);
+                if (!$username || !$password) {
+                    $message = 'Missing username or password';
+                    $strErrorHeader = 'HTTP/1.1 400 Bad Request';
+                }
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+
+                $userModel = new UserModel();
+                $sql = $userModel->createUser($username, $hashedPassword);
                 $responseData = json_encode($sql);
+
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
@@ -81,13 +55,18 @@ class UserController extends BaseController {
                 global $conn;
 
                 $input = json_decode(file_get_contents("php://input"), true);
-                $purchase_id = $input['purchase_id'];
+                $username = $input['username'] ?? null;
 
-                $animalModel = new AnimalModel();
-                $value = $animalModel->deletePurchase($purchase_id);
+                if (!$username) {
+                    $message = 'Missing username';
+                    $strErrorHeader = 'HTTP/1.1 400 Bad Request';
+                }
+                $userModel = new UserModel();
+                $value = $userModel->deleteUser($username);
                 $responseData = json_encode($value);
+
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
@@ -115,20 +94,29 @@ class UserController extends BaseController {
                 global $conn;
         
                 $input = json_decode(file_get_contents("php://input"), true);
-                $purchase_id = $input['purchase_id'];
-                $animal = $input['animal'];
-                
-                $animalModel = new AnimalModel();
-                $value = $animalModel->updatePurchase( $purchase_id, $animal);
+                $username = $input['username'] ?? null;
+                $password = $input['password'] ?? null;
+
+                if (!$username || !$password) {
+                    $message = 'Missing username or password';
+                    $strErrorHeader = 'HTTP/1.1 400 Bad Request';
+                }
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                $userModel = new UserModel();
+                $value = $userModel->updateUser($username, $hashedPassword);
                 $responseData = json_encode($value);
+
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
             $message = 'Method not supported';
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
+
+
 
         if (!$message) {
             $this->sendOutput(

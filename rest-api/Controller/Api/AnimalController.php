@@ -14,7 +14,7 @@ class AnimalController extends BaseController {
                 $value = $animalModel->getPurchases();
                 $responseData = json_encode($value);
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
             
@@ -53,7 +53,7 @@ class AnimalController extends BaseController {
                 $sql = $animalModel->createPurchase($username, $animal);
                 $responseData = json_encode($sql);
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
@@ -87,7 +87,7 @@ class AnimalController extends BaseController {
                 $value = $animalModel->deletePurchase($purchase_id);
                 $responseData = json_encode($value);
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
@@ -122,7 +122,7 @@ class AnimalController extends BaseController {
                 $value = $animalModel->updatePurchase( $purchase_id, $animal);
                 $responseData = json_encode($value);
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
