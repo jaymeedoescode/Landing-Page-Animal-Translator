@@ -7,7 +7,7 @@ function getPurchase() {
 
     $username = $_SESSION["username"];
 
-    $sql = "SELECT * FROM `Softwares Bought` WHERE username=?";
+    $sql = "SELECT * FROM `animals` WHERE username=?";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);

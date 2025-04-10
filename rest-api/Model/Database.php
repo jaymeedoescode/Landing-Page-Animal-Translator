@@ -26,7 +26,6 @@ class Database
         } catch(Exception $e) {
             throw new Exception( $e->getMessage() );
         }
-        return false;
     }
 
     private function executeStatement($query = "" , $params = []) {

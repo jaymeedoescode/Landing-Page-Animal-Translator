@@ -1,10 +1,26 @@
-<?php session_start();
+<!DOCTYPE HTML>
+    <head lan="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+
+    <body>
+
+        <form action="makePurchase.php" method="POST">
+            <label for="animal">What animal would you like to buy:</label>
+            <input type="text" id="animal" name="animal" required><br><br>
+
+            <input type="submit" value="submit">
+        </form>
+
+
+        <?php session_start();
 require_once "conn.php";
 
 function makePurchase($username, $animal) {
     global $conn;
 
-    $rowcount = "SELECT COUNT(*) FROM Softwares_bought_db";
+    $rowcount = "SELECT COUNT(*) FROM animals";
     $result = $conn->query($rowcount);
     $row = $result->fetch_assoc();
 
@@ -12,7 +28,7 @@ function makePurchase($username, $animal) {
 
     $currentTimestamp = date('Y-m-d H:i:s');
 
-    $sql = "INSERT INTO `Softwares Bought` (`purchase_id`, `username`, `animal`, `time_date`) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO `animals` (`purchase_id`, `username`, `animal`, `time_date`) VALUES (?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("isss", $purchase_id, $username, $animal, $currentTimestamp);
@@ -21,6 +37,7 @@ function makePurchase($username, $animal) {
     } else {
         die("Uh oh, we couldn't complete your purchase: " . $conn->error);
     }
+
 }
 
 function addUser($name, $email) {
@@ -48,23 +65,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 ?>
-        
-        
-        
-<!DOCTYPE HTML>
-    <head lan="en">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="css/styles.css" />
-    </head>
-
-    <body>
-
-        <form action="makePurchase.php" method="POST">
-            <label for="animal">What animal would you like to buy:</label>
-            <input type="text" id="animal" name="animal" required><br><br>
-
-            <input type="submit" value="submit">
-        </form>
-
 
     </body>

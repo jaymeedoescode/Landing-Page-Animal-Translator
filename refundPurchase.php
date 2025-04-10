@@ -4,7 +4,7 @@
     function refundPurchase($purchase_id) {
         global $conn;
 
-        $sql = "DELETE FROM `Softwares Bought` WHERE purchase_id=?";
+        $sql = "DELETE FROM `animals` WHERE purchase_id=?";
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $purchase_id);

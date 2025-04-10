@@ -5,7 +5,7 @@ function updatePurchase($purchase_id, $animal) {
 
     global $conn;
 
-    $sql = "UPDATE (animal) FROM Softwares_bought_db WHERE purchase_id=?";
+    $sql = "UPDATE (animal) FROM animals WHERE purchase_id=?";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $animal,  $purchase_id);
@@ -52,11 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     <body>
         <form action="updatePurchase.php" method="PUT">
             
-            <label for="new_email">What is the Purchase ID of the purchase you'd like to </label>
-            <input type="text" id="purchase_id" name="purchase_id" required><br><br>
+            <label for="new_email">What is the Purchase ID of the purchase you'd like to update</label>
+            <input type="text" id="purchase_id" name="purchase_id" placeholder="00000000" required><br><br>
 
             <label for="new_email">New Animal:</label>
-            <input type="text" id="animal" name="animal" required><br><br>
+            <input type="text" id="animal" name="animal" placeholder="Animal" required><br><br>
 
             <input type="submit" value="Update">
         </form>

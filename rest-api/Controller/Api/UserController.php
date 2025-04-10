@@ -38,6 +38,62 @@ class UserController extends BaseController {
             );
         }
     }
+
+
+    public function createAction($username, $animal) {
+            global $conn;
+        
+            $rowcount = "SELECT COUNT(*) FROM animals";
+            $result = $conn->query($rowcount);
+            $row = $result->fetch_assoc();
+        
+            $purchase_id = $row['COUNT(*)'] + 1;
+        
+            $currentTimestamp = date('Y-m-d H:i:s');
+        
+            $sql = "INSERT INTO `animals` (`purchase_id`, `username`, `animal`, `time_date`) VALUES (?, ?, ?, ?)";
+        
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("isss", $purchase_id, $username, $animal, $currentTimestamp);
+            if ($stmt->execute()) {
+                return "Congratulations! You can now talk to " . $animal . "s!     Your purchase ID is: " . $purchase_id . "Thank you for shopping with us today!";
+            } else {
+                die("Uh oh, we couldn't complete your purchase: " . $conn->error);
+            }
+    }
+
+    public function deleteAction($purchase_id) {
+        global $conn;
+
+        $sql = "DELETE FROM `animals` WHERE purchase_id=?";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $purchase_id);
+
+        if ($stmt->execute()) {
+            return "your purchase successfully refunded";
+        } else {
+            die("uh oh, we couldn't delete you bc: " . $conn->error); }
+    }
+
+
+    public function updateAction($purchase_id, $animal) {
+
+        global $conn;
+    
+        $sql = "UPDATE (animal) FROM animals WHERE purchase_id=?";
+    
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("si", $animal,  $purchase_id);
+    
+        if ($stmt->execute()) {
+            return "Your purchase has successfully been updated";
+        } else {
+            die("Uh oh, we couldn't delete you because: " . $conn->error);
+        }
+    
+    }
+
 }
 
 

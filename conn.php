@@ -6,7 +6,6 @@
     </head>
 
     <body>
-        <p>This is the first page to practice building a dynamic php and sql integrated page</p>
         <?php
             $host = "127.0.0.1";
             $username = "root";
@@ -19,7 +18,7 @@
                 die ("connection failed: " . $conn->connect_error);
             }
             
-            echo "connected successfully";
+            
             $conn->set_charset("utf8");
 
 
