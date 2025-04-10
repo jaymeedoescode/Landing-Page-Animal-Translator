@@ -1,11 +1,11 @@
 <?php
 require_once PROJECT_ROOT_PATH . "/Model/Database.php";
 
-class UserModel extends Database {
-    public function getUser() {
+class AnimalModel extends Database {
+    public function getPurchases() {
         $username = $_SESSION["username"];
 
-        return $this->select("SELECT * FROM `users` WHERE username=?", ["s", $username]);
+        return $this->select("SELECT * FROM `animals` WHERE username=?", ["s", $username]);
     }
 
     public function createPurchase($username, $animal) {
