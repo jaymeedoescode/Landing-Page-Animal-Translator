@@ -3,13 +3,13 @@ require_once "conn.php";
 
 function getPurchase() {
     
-    global $conn;
+    global $config;
 
     $username = $_SESSION["username"];
 
     $sql = "SELECT * FROM `animals` WHERE username=?";
 
-    $stmt = $conn->prepare($sql);
+    $stmt = $config->prepare($sql);
     $stmt->bind_param("s", $username);
 
     $stmt->execute();

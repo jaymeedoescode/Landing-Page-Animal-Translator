@@ -6,11 +6,11 @@ require __DIR__ . "/inc/config.php";  // Include config.php for database credent
 require __DIR__ . "/inc/bootstrap.php";  // Your bootstrap file (if needed)
 
 // Create DB connection
-$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE_NAME);
+$config = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE_NAME);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error); // Show error if connection fails
+if ($config->connect_error) {
+    die("Connection failed: " . $config->connect_error); // Show error if connection fails
 }
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);  // Get the URL path

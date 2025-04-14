@@ -18,10 +18,10 @@
 require_once "conn.php";
 
 function makePurchase($username, $animal) {
-    global $conn;
+    global $config;
 
     $rowcount = "SELECT COUNT(*) FROM animals";
-    $result = $conn->query($rowcount);
+    $result = $config->query($rowcount);
     $row = $result->fetch_assoc();
 
     $purchase_id = $row['COUNT(*)'] + 1;
@@ -30,20 +30,20 @@ function makePurchase($username, $animal) {
 
     $sql = "INSERT INTO `animals` (`purchase_id`, `username`, `animal`, `time_date`) VALUES (?, ?, ?, ?)";
 
-    $stmt = $conn->prepare($sql);
+    $stmt = $config->prepare($sql);
     $stmt->bind_param("isss", $purchase_id, $username, $animal, $currentTimestamp);
     if ($stmt->execute()) {
         return "Congratulations! You can now talk to " . $animal . "s!     Your purchase ID is: " . $purchase_id . "Thank you for shopping with us today!";
     } else {
-        die("Uh oh, we couldn't complete your purchase: " . $conn->error);
+        die("Uh oh, we couldn't complete your purchase: " . $config->error);
     }
 
 }
 
 function addUser($name, $email) {
-    global $conn; // Use the database connection from config.php
+    global $config; // Use the database connection from config.php
     $sql = "INSERT INTO users (name, email) VALUES (?, ?)"; 
-    $stmt = $conn->prepare($sql);
+    $stmt = $config->prepare($sql);
     $stmt->bind_param("ss", $name, $email);
     return $stmt->execute(); // Return success (true/false)
 }

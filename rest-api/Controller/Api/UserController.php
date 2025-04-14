@@ -9,7 +9,7 @@ class UserController extends BaseController {
 
         if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'POST') {    
             try{   
-                global $conn;
+                global $config;
 
                 $input = json_decode(file_get_contents("php://input"), true);
                 $username = $input['username'] ?? null;
@@ -52,7 +52,7 @@ class UserController extends BaseController {
 
         if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'DELETE') {    
             try{
-                global $conn;
+                global $config;
 
                 $input = json_decode(file_get_contents("php://input"), true);
                 $username = $input['username'] ?? null;
@@ -91,7 +91,7 @@ class UserController extends BaseController {
 
         if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'PATCH') {    
             try{
-                global $conn;
+                global $config;
         
                 $input = json_decode(file_get_contents("php://input"), true);
                 $username = $input['username'] ?? null;

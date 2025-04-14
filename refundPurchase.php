@@ -2,17 +2,17 @@
     require_once "conn.php";
 
     function refundPurchase($purchase_id) {
-        global $conn;
+        global $config;
 
         $sql = "DELETE FROM `animals` WHERE purchase_id=?";
 
-        $stmt = $conn->prepare($sql);
+        $stmt = $config->prepare($sql);
         $stmt->bind_param("i", $purchase_id);
 
         if ($stmt->execute()) {
             return "your purchase successfully refunded";
         } else {
-            die("uh oh, we couldn't delete you bc: " . $conn->error); }
+            die("uh oh, we couldn't delete you bc: " . $config->error); }
     }
 
 

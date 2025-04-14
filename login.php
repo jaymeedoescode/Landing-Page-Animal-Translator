@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Connect to the database
-    $conn = new mysqli('sql207.infinityfree.com', 'if0_38478569', 'omToGqVcty', 'if0_38478569_Animals');
-    if ($conn->connect_error) {
+    $config = new mysqli('sql207.infinityfree.com', 'if0_38478569', 'omToGqVcty', 'if0_38478569_Animals');
+    if ($config->connect_error) {
         $error = "Database connection failed. Please try again later.";
     } else {
         // Check if the username exists
-        $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
+        $stmt = $config->prepare("SELECT password FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->store_result();
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Close the database connection
         $stmt->close();
-        $conn->close();
+        $config->close();
     }
 }
 ?>

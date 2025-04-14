@@ -9,9 +9,9 @@ class AnimalModel extends Database {
     }
 
     public function createPurchase($username, $animal) {
-        global $conn;
+        global $config;
         $rowcount = "SELECT COUNT(*) FROM animals";
-            $result = $conn->query($rowcount);
+            $result = $config->query($rowcount);
             $row = $result->fetch_assoc();
         
             $purchase_id = $row['COUNT(*)'] + 1;

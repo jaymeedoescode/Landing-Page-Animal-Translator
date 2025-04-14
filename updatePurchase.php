@@ -3,17 +3,17 @@ require_once "conn.php";
 
 function updatePurchase($purchase_id, $animal) {
 
-    global $conn;
+    global $config;
 
     $sql = "UPDATE (animal) FROM animals WHERE purchase_id=?";
 
-    $stmt = $conn->prepare($sql);
+    $stmt = $config->prepare($sql);
     $stmt->bind_param("si", $animal,  $purchase_id);
 
     if ($stmt->execute()) {
         return "Your purchase has successfully been updated";
     } else {
-        die("Uh oh, we couldn't delete you because: " . $conn->error);
+        die("Uh oh, we couldn't delete you because: " . $config->error);
     }
 
 }

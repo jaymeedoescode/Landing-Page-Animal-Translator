@@ -23,12 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Passwords do not match.";
     } else {
         // Connect to the database
-        $conn = new mysqli('sql207.infinityfree.com', 'if0_38478569', 'omToGqVcty', 'if0_38478569_Animals');
-        if ($conn->connect_error) {
+        $config = new mysqli('sql207.infinityfree.com', 'if0_38478569', 'omToGqVcty', 'if0_38478569_Animals');
+        if ($config->connect_error) {
             $error = "Database connection failed. Please try again later.";
         } else {
             // Check if the username already exists
-            $stmt = $conn->prepare("SELECT username FROM users WHERE username = ?");
+            $stmt = $config->prepare("SELECT username FROM users WHERE username = ?");
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $stmt->store_result();
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
                 // Insert the new user into the database
-                $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+                $stmt = $config->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
                 $stmt->bind_param("ss", $username, $hashed_password);
 
                 if ($stmt->execute()) {
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Close the database connection
             $stmt->close();
-            $conn->close();
+            $config->close();
         }
     }
 }

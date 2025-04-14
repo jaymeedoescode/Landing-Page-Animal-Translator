@@ -8,9 +8,9 @@ class AnimalController extends BaseController {
         if (strtoupper($_SERVER["REQUEST_METHOD"]) == 'GET') {  
             try {
 <<<<<<< HEAD
-                global $conn; // Assuming $conn is your database connection
+                global $config; // Assuming $config is your database connection
                 $sql = "SELECT * FROM animals"; // Query all animals from the database
-                $result = $conn->query($sql);
+                $result = $config->query($sql);
                 
                 // Check if there are any results
                 if ($result->num_rows > 0) {
@@ -25,7 +25,7 @@ class AnimalController extends BaseController {
                     $responseData = json_encode([]);
                 }
 =======
-                global $conn;
+                global $config;
 
                 $animalModel = new AnimalModel();
                 $value = $animalModel->getPurchases();
@@ -58,9 +58,6 @@ class AnimalController extends BaseController {
             );
         }
     }
-<<<<<<< HEAD
-}
-=======
 
 
     public function createAction() {
@@ -68,7 +65,7 @@ class AnimalController extends BaseController {
 
         if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'POST') {    
             try{   
-                global $conn;
+                global $config;
 
                 $input = json_decode(file_get_contents("php://input"), true);
                 $username = $input['username'];
@@ -103,7 +100,7 @@ class AnimalController extends BaseController {
 
         if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'DELETE') {    
             try{
-                global $conn;
+                global $config;
 
                 $input = json_decode(file_get_contents("php://input"), true);
                 $purchase_id = $input['purchase_id'];
@@ -137,7 +134,7 @@ class AnimalController extends BaseController {
 
         if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'PATCH') {    
             try{
-                global $conn;
+                global $config;
         
                 $input = json_decode(file_get_contents("php://input"), true);
                 $purchase_id = $input['purchase_id'];
@@ -170,4 +167,3 @@ class AnimalController extends BaseController {
 }
 
 
->>>>>>> 37c2a579aed0c2b898f8496829f430b43e0a8560
