@@ -49,11 +49,18 @@ class AnimalController extends BaseController {
                 global $config;
 
                 $input = json_decode(file_get_contents("php://input"), true);
-                $username = $input['username'];
-                $animal = $input['animal'];
+                $username = $input['username'] ?? null;
+                $animal = $input['animal'] ?? null;
 
                 $animalModel = new AnimalModel();
-                $sql = $animalModel->createPurchase($username, $animal);
+                $rowcount = "SELECT count(*) FROM animals";
+                $result = $config->query($rowcount);
+                $row = $result->fetch_assoc();
+        
+                $purchase_id = $row['count(*)'] + 1;
+        
+                $currentTimestamp = date('Y-m-d H:i:s');
+                $sql = $animalModel->createPurchase($purchase_id, $username, $animal, $currentTimestamp);
                 $responseData = json_encode($sql);
             } catch (Error $e) {
                 $message = $e->getMessage().'Something went wrong! Please contact support.';

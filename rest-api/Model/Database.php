@@ -28,7 +28,7 @@ class Database
         }
     }
 
-    private function executeStatement($query = "" , $params = []) {
+    public function executeStatement($query = "" , $params = []) {
         try {
             $stmt = $this->connection-> prepare( $query );
 
@@ -37,7 +37,9 @@ class Database
             }
 
             if($params ) {
-                $stmt->bind_param($params[0], $params[1]);
+                $types = $params[0];
+                $values = array_slice($params, 1);
+                $stmt->bind_param($types, ...$values);
             }
 
             $stmt->execute();

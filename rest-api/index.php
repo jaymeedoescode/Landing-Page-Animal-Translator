@@ -7,13 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-/*require __DIR__ . "/inc/config.php";  // Include config.php for database credentials*/
 require __DIR__ . "/inc/bootstrap.php";  // Your bootstrap file (if needed)
-
-define("DB_HOST", "127.0.0.1");
-define("DB_USERNAME", "root");
-define("DB_PASSWORD", "");
-define("DB_DATABASE_NAME", "Softwares_bought_db");
 
 // Create DB connection
 $config = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE_NAME);
@@ -27,7 +21,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);  // Get the URL path
 $uri = explode('/', $uri);  // Split the path
 
 // Check if the URI contains both 'endpoint' and 'action'
-if (!($uri[3]==='animal') && !($uri[4]==='read')) {
+if (!isset($uri[3]) && !isset($uri[4])) {
     header("HTTP/1.1 404 Not Found1");
     exit();
 }
