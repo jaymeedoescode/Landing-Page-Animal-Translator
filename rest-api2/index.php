@@ -1,31 +1,39 @@
 <?php
+
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require __DIR__ . "/inc/config.php";  // Include config.php for database credentials
+/*require __DIR__ . "/inc/config.php";  // Include config.php for database credentials*/
 require __DIR__ . "/inc/bootstrap.php";  // Your bootstrap file (if needed)
+
+define("DB_HOST", "127.0.0.1");
+define("DB_USERNAME", "root");
+define("DB_PASSWORD", "");
+define("DB_DATABASE_NAME", "Softwares_bought_db");
 
 // Create DB connection
 $config = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE_NAME);
 
 // Check connection
 if ($config->connect_error) {
-    die("Connection failed: " . $config->connect_error); // Show error if connection fails
+    die("Connection failed: .5" . $config->connect_error); // Show error if connection fails
 }
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);  // Get the URL path
 $uri = explode('/', $uri);  // Split the path
 
 // Check if the URI contains both 'endpoint' and 'action'
-if (!isset($uri[2]) || !isset($uri[3])) {
-    header("HTTP/1.1 404 Not Found");
+if (!($uri[3]==='animal') && !($uri[4]==='read')) {
+    header("HTTP/1.1 404 Not Found1");
     exit();
 }
 
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -35,24 +43,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 require PROJECT_ROOT_PATH . "/Controller/Api/UserController.php";
 require PROJECT_ROOT_PATH . "/Controller/Api/AnimalController.php";
 
+
+
 // The base folder for controllers (no namespace path, just the file path)
-$prefix = $uri[2];  // 'animal' or 'user'
-$className = ucfirst($prefix) . "Controller";  // AnimalController or UserController
+$prefix = $uri[3];  // 'animal' or 'user'
+$className = $prefix . "Controller";  // AnimalController or UserController
 
 // Check if the controller class exists
 if (!class_exists($className)) {
-    header("HTTP/1.1 404 Not Found");
+    header("HTTP/1.1 404 Not Found2");
     exit();
 }
 
 $controller = new $className();  // Instantiate the controller
 
 // Get the action method from the URL
-$strMethodName = $uri[3] . 'Action';  // readAction(), createAction(), etc.
+$strMethodName = $uri[4] . 'Action';  // readAction(), createAction(), etc.
 
 // Check if the method exists in the controller
 if (!method_exists($controller, $strMethodName)) {
-    header("HTTP/1.1 404 Not Found");
+    header("HTTP/1.1 404 Not Found3");
     exit();
 }
 

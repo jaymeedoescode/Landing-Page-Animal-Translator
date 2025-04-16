@@ -1,4 +1,7 @@
 <?php
+
+require_once PROJECT_ROOT_PATH . "/Model/AnimalModel.php";
+
 class AnimalController extends BaseController {
 
     // Add the 'read' action to fetch all animals
@@ -7,30 +10,12 @@ class AnimalController extends BaseController {
 
         if (strtoupper($_SERVER["REQUEST_METHOD"]) == 'GET') {  
             try {
-<<<<<<< HEAD
-                global $config; // Assuming $config is your database connection
-                $sql = "SELECT * FROM animals"; // Query all animals from the database
-                $result = $config->query($sql);
-                
-                // Check if there are any results
-                if ($result->num_rows > 0) {
-                    $animals = [];
-                    while ($row = $result->fetch_assoc()) {
-                        $animals[] = $row; // Add each animal to the array
-                    }
-                    // Return the animals as JSON
-                    $responseData = json_encode($animals);
-                } else {
-                    $message = 'No animals found';
-                    $responseData = json_encode([]);
-                }
-=======
-                global $config;
 
+                global $config;
                 $animalModel = new AnimalModel();
                 $value = $animalModel->getPurchases();
                 $responseData = json_encode($value);
->>>>>>> 37c2a579aed0c2b898f8496829f430b43e0a8560
+                
             } catch (Error $e) {
                 $message = $e->getMessage().' Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
@@ -41,12 +26,8 @@ class AnimalController extends BaseController {
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
 
-<<<<<<< HEAD
-        // Send output 
-=======
 
         // send output 
->>>>>>> 37c2a579aed0c2b898f8496829f430b43e0a8560
         if (!$message) {
             $this->sendOutput(
                 $responseData,
@@ -165,5 +146,3 @@ class AnimalController extends BaseController {
     }
 
 }
-
-
