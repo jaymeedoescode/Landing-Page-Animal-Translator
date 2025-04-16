@@ -4,10 +4,12 @@ import { useRouter } from 'expo-router';
 import { getAllAnimals } from '../api/animalApi';
 
 interface Animal {
-  id: number;
+  purchase_id: number;
   animal: string;
   translation: string;
+  time_date: string; // optional, for later
 }
+
 
 export default function HomeScreen() {
   const router = useRouter();

@@ -1,5 +1,12 @@
 <?php
-define("DB_HOST", "sql207.infinityfree.com ");
-define("DB_USERNAME", "if0_38478569");
-define("DB_PASSWORD", "omToGqVcty");
-define("DB_DATABASE_NAME", "if0_38478569_Animals ");
+define("DB_HOST", "localhost");
+define("DB_USERNAME", "root");
+define("DB_PASSWORD", "");
+define("DB_DATABASE_NAME", "at-test");
+
+$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE_NAME);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>

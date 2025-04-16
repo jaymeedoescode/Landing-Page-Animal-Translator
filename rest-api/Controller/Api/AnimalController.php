@@ -1,81 +1,50 @@
 <?php
+require_once __DIR__ . '/BaseController.php';
+require_once __DIR__ . '/../../Model/AnimalModel.php';
+
 class AnimalController extends BaseController {
 
-    // Add the 'read' action to fetch all animals
     public function readAction() {
         $message = '';
 
-        if (strtoupper($_SERVER["REQUEST_METHOD"]) == 'GET') {  
+        if (strtoupper($_SERVER["REQUEST_METHOD"]) === 'GET') {
             try {
-<<<<<<< HEAD
-                global $config; // Assuming $config is your database connection
-                $sql = "SELECT * FROM animals"; // Query all animals from the database
-                $result = $config->query($sql);
-                
-                // Check if there are any results
-                if ($result->num_rows > 0) {
-                    $animals = [];
-                    while ($row = $result->fetch_assoc()) {
-                        $animals[] = $row; // Add each animal to the array
-                    }
-                    // Return the animals as JSON
-                    $responseData = json_encode($animals);
-                } else {
-                    $message = 'No animals found';
-                    $responseData = json_encode([]);
-                }
-=======
                 global $config;
-
                 $animalModel = new AnimalModel();
-                $value = $animalModel->getPurchases();
+                $value = $animalModel->getPurchases();  // Returns an array
                 $responseData = json_encode($value);
->>>>>>> 37c2a579aed0c2b898f8496829f430b43e0a8560
             } catch (Error $e) {
-                $message = $e->getMessage().' Something went wrong! Please contact support.';
+                $message = $e->getMessage() . ' Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
-            
         } else {
             $message = 'Method not supported';
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
 
-<<<<<<< HEAD
-        // Send output 
-=======
-
-        // send output 
->>>>>>> 37c2a579aed0c2b898f8496829f430b43e0a8560
         if (!$message) {
-            $this->sendOutput(
-                $responseData,
-                array('Content-Type: application/json', 'HTTP/1.1 200 OK')
-            );
+            $this->sendOutput($responseData, ['Content-Type: application/json', 'HTTP/1.1 200 OK']);
         } else {
-            $this->sendOutput(json_encode(array('error' => $message)), 
-                array('Content-Type: application/json', $strErrorHeader)
-            );
+            $this->sendOutput(json_encode(['error' => $message]), ['Content-Type: application/json', $strErrorHeader]);
         }
     }
-
 
     public function createAction() {
         $message = '';
 
-        if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'POST') {    
-            try{   
+        if (strtoupper($_SERVER["REQUEST_METHOD"]) === 'POST') {
+            try {
                 global $config;
-
                 $input = json_decode(file_get_contents("php://input"), true);
-                $username = $input['username'];
-                $animal = $input['animal'];
+                $username = $input['username'] ?? null;
+                $animal = $input['animal'] ?? null;
+                $translation = $input['translation'] ?? null;
 
                 $animalModel = new AnimalModel();
-                $sql = $animalModel->createPurchase($username, $animal);
+                $sql = $animalModel->createPurchase($username, $animal, $translation);
                 $responseData = json_encode($sql);
             } catch (Error $e) {
-                $message = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage() . ' Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
@@ -84,67 +53,55 @@ class AnimalController extends BaseController {
         }
 
         if (!$message) {
-            $this->sendOutput(
-                $responseData,
-                array('Content-Type: application/json', 'HTTP/1.1 200 OK')
-            );
+            $this->sendOutput($responseData, ['Content-Type: application/json', 'HTTP/1.1 200 OK']);
         } else {
-            $this->sendOutput(json_encode(array('error' => $message)), 
-                array('Content-Type: application/json', $strErrorHeader)
-            );
+            $this->sendOutput(json_encode(['error' => $message]), ['Content-Type: application/json', $strErrorHeader]);
         }
     }
-    
+
     public function deleteAction() {
         $message = '';
 
-        if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'DELETE') {    
-            try{
+        if (strtoupper($_SERVER["REQUEST_METHOD"]) === 'DELETE') {
+            try {
                 global $config;
-
                 $input = json_decode(file_get_contents("php://input"), true);
-                $purchase_id = $input['purchase_id'];
+                $purchase_id = $input['purchase_id'] ?? null;
 
                 $animalModel = new AnimalModel();
                 $value = $animalModel->deletePurchase($purchase_id);
                 $responseData = json_encode($value);
             } catch (Error $e) {
-                $message = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage() . ' Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
             $message = 'Method not supported';
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
-        
+
         if (!$message) {
-            $this->sendOutput(
-                $responseData,
-                array('Content-Type: application/json', 'HTTP/1.1 200 OK')
-            );
+            $this->sendOutput($responseData, ['Content-Type: application/json', 'HTTP/1.1 200 OK']);
         } else {
-            $this->sendOutput(json_encode(array('error' => $message)), 
-                array('Content-Type: application/json', $strErrorHeader)
-            );
+            $this->sendOutput(json_encode(['error' => $message]), ['Content-Type: application/json', $strErrorHeader]);
         }
     }
 
     public function updateAction() {
         $message = '';
 
-        if(strtoupper($_SERVER["REQUEST_METHOD"]) == 'PATCH') {    
-            try{
+        if (strtoupper($_SERVER["REQUEST_METHOD"]) === 'PATCH') {
+            try {
                 global $config;
-        
                 $input = json_decode(file_get_contents("php://input"), true);
-                $purchase_id = $input['purchase_id'];
-                $animal = $input['animal'];
-                
+                $purchase_id = $input['purchase_id'] ?? null;
+                $animal = $input['animal'] ?? null;
+
                 $animalModel = new AnimalModel();
-                $value = $animalModel->updatePurchase( $purchase_id, $animal);
+                $value = $animalModel->updatePurchase($purchase_id, $animal);
                 $responseData = json_encode($value);
             } catch (Error $e) {
-                $message = $e->getMessage().'Something went wrong! Please contact support.';
+                $message = $e->getMessage() . ' Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
@@ -153,17 +110,9 @@ class AnimalController extends BaseController {
         }
 
         if (!$message) {
-            $this->sendOutput(
-                $responseData,
-                array('Content-Type: application/json', 'HTTP/1.1 200 OK')
-            );
+            $this->sendOutput($responseData, ['Content-Type: application/json', 'HTTP/1.1 200 OK']);
         } else {
-            $this->sendOutput(json_encode(array('error' => $message)), 
-                array('Content-Type: application/json', $strErrorHeader)
-            );
+            $this->sendOutput(json_encode(['error' => $message]), ['Content-Type: application/json', $strErrorHeader]);
         }
     }
-
 }
-
-
