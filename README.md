@@ -492,15 +492,32 @@ const BASE_URL = "http://192.168.1.20/test/rest-api/api.php";
 
 Screenshots to Include 
 
-📱 Add Animal screen 
+📱 Add Animal screen
+![image](https://github.com/user-attachments/assets/4033f504-20b1-4196-9b9e-356faae32e1b)
+
 
 📱 Home screen showing animal list
+![image](https://github.com/user-attachments/assets/b7f318c1-1b53-41bf-b794-8727db35d3a3)
+
+
 
 🧪 Postman testing your GET and POST endpoints
+<img width="1440" alt="animal-create-post" src="https://github.com/user-attachments/assets/5e9e5cd0-5e96-465e-baca-dcd21a035b7c" />
+<img width="1440" alt="animal-read-get" src="https://github.com/user-attachments/assets/278629bb-8210-4a0e-a17e-7d958252cfea" />
+![image](https://github.com/user-attachments/assets/e5c90ebf-c1b3-4cba-bde5-15f0005fa8de)
+
 
 🗃️ phpMyAdmin table of animals
+![image](https://github.com/user-attachments/assets/fa07eb4e-714d-4a35-b555-ffcd2d9cde70)
+![image](https://github.com/user-attachments/assets/adfcb986-5846-4e08-9d9e-ba3813c9b42d)
+
+
 
 🔧 config file or localhost URL showing success
+![image](https://github.com/user-attachments/assets/3fbba422-5710-478b-acd5-678c23307bf2)
+![image](https://github.com/user-attachments/assets/9dcf081e-982e-421c-9402-cdbe0be223ea)
+
+
 
 ## Credits
 - Frontend: Jaime 50%
