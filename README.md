@@ -507,6 +507,11 @@ The backend API follows RESTful conventions:
 - `/api/user/list` - Get all users
 - `/api/user/create` - Add a new user/animal translation
 
+Postman approval get:
+![Postman get](pictures/animal-read-get.png)
+
+![Postman post](pictures/animal-create-post.png)
+
 ## Credits
 - Frontend: Jaime 50%
 - Backend: Abdu 50%
