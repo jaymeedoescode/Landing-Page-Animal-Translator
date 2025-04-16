@@ -281,9 +281,9 @@ CREATE TABLE `purchases` (
   `purchase_id` int(8) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `animal` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `time/date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `time_date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`purchase_id`),
-  KEY `TIME/DATE` (`time/date`),
+  KEY `TIME_DATE` (`time_date`),
   KEY `ANIMAL` (`animal`),
   KEY `USERNAME` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

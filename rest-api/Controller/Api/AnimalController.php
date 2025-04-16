@@ -60,12 +60,13 @@ class AnimalController extends BaseController {
                 $purchase_id = $row['count(*)'] + 1;
         
                 $currentTimestamp = date('Y-m-d H:i:s');
-                $sql = $animalModel->createPurchase($purchase_id, $username, $animal, $currentTimestamp);
-                $responseData = json_encode($sql);
+                return $animalModel->createPurchase($purchase_id, $username, $animal, $currentTimestamp);
             } catch (Error $e) {
                 $message = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
+        $responseData = json_encode("");
+
         } else {
             $message = 'Method not supported';
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
