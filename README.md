@@ -405,7 +405,7 @@ This app allows users to log in and view their "animal translations" using a loc
 -  [Expo CLI](https://docs.expo.dev/get-started/installation/)
 
 Install Expo CLI:
-```bash
+bash
 npm install -g expo-cli
 
 2. Set Up Backend
