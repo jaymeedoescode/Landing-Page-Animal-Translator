@@ -510,6 +510,7 @@ The backend API follows RESTful conventions:
 Postman approval get:
 ![Postman get](pictures/animal-read-get.png)
 
+
 ![Postman post](pictures/animal-create-post.png)
 
 ## Credits
