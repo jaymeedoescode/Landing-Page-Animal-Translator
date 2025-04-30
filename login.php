@@ -1,81 +1,143 @@
 <?php
-// Start a PHP session (needed for user authentication)
 session_start();
-
-// Initialize the error variable
 $error = "";
-
-// Redirect to the main page if the user is already logged in
 if (isset($_SESSION['username'])) {
     header("Location: index.php");
     exit();
 }
 
-// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get form data
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Connect to the database
-    $config = new mysqli('sql207.infinityfree.com', 'if0_38478569', 'omToGqVcty', 'if0_38478569_Animals');
-    if ($config->connect_error) {
+    $conn = new mysqli('sql207.infinityfree.com', 'if0_38478569', 'omToGqVcty', 'if0_38478569_Animals');
+    if ($conn->connect_error) {
         $error = "Database connection failed. Please try again later.";
     } else {
-        // Check if the username exists
-        $stmt = $config->prepare("SELECT password FROM users WHERE username = ?");
+        $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($hashed_password);
         $stmt->fetch();
 
-        // Verify the password
         if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
-            // Start a session and store the username
             $_SESSION['username'] = $username;
-
-            // Redirect to the main page
             header("Location: index.php");
             exit();
         } else {
             $error = "Invalid username or password.";
         }
 
-        // Close the database connection
         $stmt->close();
-        $config->close();
+        $conn->close();
     }
 }
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Login</title>
-    <!-- Link to the CSS file -->
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: "Segoe UI", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+
+        .logo-wrapper {
+            margin-top: 40px;
+        }
+
+        .logo-wrapper img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            padding: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 30px 40px;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 15px;
+            color: #187795;
+            font-weight: 600;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #187795;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #145f75;
+        }
+
+        .register-link {
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
+
+<div class="logo-wrapper">
+    <img src="pictures/jake.png" alt="Logo">
+</div>
+
+<div class="form-container">
     <h1>Login</h1>
-    <!-- Display error messages here (if any) -->
     <?php if (!empty($error)): ?>
         <p style="color: red;"><?php echo $error; ?></p>
     <?php endif; ?>
-
-    <!-- Login Form -->
-    <form action="login.php" method="POST" onsubmit="return validateLoginForm()">
+    <form action="login.php" method="POST">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
+        <input type="text" id="username" name="username" required>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
+        <input type="password" id="password" name="password" required>
 
         <button type="submit">Login</button>
     </form>
 
-    <p>Don't have an account? <a href="register.php">Register here</a>.</p>
+    <p class="register-link">Don't have an account? <a href="register.php">Register here</a>.</p>
+</div>
 
-    <!-- Link to the JavaScript file -->
-    <script src="js/scripts.js"></script>
 </body>
 </html>

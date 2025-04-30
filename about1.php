@@ -277,19 +277,6 @@ if (!isset($_SESSION['username'])) {
       }
     }
   </style>
-
-<style>
-.navbar {
-    width: 100%;
-    background-color: #187795;
-    color: white;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-    margin-top: 60px;
-}
-</style>
-
 </head>
 <body>
   <div class="top-nav">
@@ -415,71 +402,17 @@ if (!isset($_SESSION['username'])) {
             <li>Possibility of your pet becoming the new leader of the household.</li>
         </ul>
         <p>
-            
-<!-- PURCHASE ACTIONS SECTION -->
-<div class="purchase-actions">
-    <div class="purchase-card">
-        <h2>🛒 Purchase Options</h2>
-        <a href="makePurchase.php" class="purchase-btn">Buy NOW!</a>
-    </div>
-
-    <div class="purchase-card">
-        <h2>📦 Manage Purchases</h2>
-        <a href="getPurchase.php" class="purchase-btn">Find a Previous Purchase</a>
-        <a href="updatePurchase.php" class="purchase-btn">Update a Purchase</a>
-        <a href="refundPurchase.php" class="purchase-btn">Refund a Purchase</a>
-    </div>
-</div>
-
-<style>
-.purchase-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.purchase-card {
-    background-color: #f4f9fb;
-    border: 2px solid #187795;
-    border-radius: 12px;
-    padding: 25px;
-    min-width: 280px;
-    max-width: 320px;
-    text-align: center;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.purchase-card h2 {
-    color: #187795;
-    margin-bottom: 20px;
-}
-
-.purchase-btn {
-    display: block;
-    margin: 10px auto;
-    padding: 12px 20px;
-    background-color: #187795;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
-
-.purchase-btn:hover {
-    background-color: #145f75;
-}
-</style>
-
-
-Please consult with your veterinarian or animal behaviorist before making any significant changes to your pet's routine based on translations provided by our service. 
+            Please consult with your veterinarian or animal behaviorist before making any significant changes to your pet's routine based on translations provided by our service. 
             Animal Translator and Co. disclaims any liability for damages resulting from the use of our services.
         </p>
        
 
-        
+        <div style="display: inline-flex; gap: 10px; border: 1px solid black; padding: 10px;">
+          <a href="makePurchase.php" class="cta-button" target="_blank">Buy NOW!</a>
+          <a href="getPurchase.php" class="cta-button" target="_blank">Find a previous purchase</a>
+          <a href="updatePurchase.php" class="cta-button" target="_blank">Update a purchase</a>
+          <a href="refundPurchase.php" class="cta-button" target="_blank">Refund a Purchase</a>
+        </div>
 
 
   </div>
