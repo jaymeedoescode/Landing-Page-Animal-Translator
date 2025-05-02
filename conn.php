@@ -1,8 +1,8 @@
 <?php
-$host = "sql207.infinityfree.com";  // MySQL Hostname
-$username = "if0_38478569";          // MySQL Username
-$password = "omToGqVcty";            // MySQL Password
-$dbname = "if0_38478569_Animals";    // MySQL Database Name
+$host = "localhost";      // Local MySQL server
+$username = "root";       // Default XAMPP username
+$password = "";           // Default XAMPP password = empty
+$dbname = "Animals";      // The database you created in phpMyAdmin
 
 // Connect to the database
 $config = new mysqli($host, $username, $password, $dbname);
