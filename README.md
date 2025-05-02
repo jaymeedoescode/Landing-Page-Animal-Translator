@@ -721,6 +721,10 @@ Your mobile app will now point at `http://localhost/animal-translator/` for all 
    ```
    /Applications/XAMPP/xamppfiles/htdocs/animal-translator
    ```
+   **IMPORTANT:
+   The animal-translator/ directory (contains all PHP API endpoints, database connection (conn.php), and PHPUnit tests) must be placed in XAMPP’s htdocs          (e.g. /Applications/XAMPP/xamppfiles/htdocs/animal-translator).
+
+   All React Native UI code lives in the frontend-app/ folder. Do not include animal-translator/ in your GitHub repo when running the mobile app—keep that       folder deployed under XAMPP’s htdocs only.
 2. **Start XAMPP**’s Apache & MySQL via the XAMPP Control Panel.
 3. **Create the database** (`Animals`):  
    - Open phpMyAdmin at `http://localhost/phpmyadmin`  
