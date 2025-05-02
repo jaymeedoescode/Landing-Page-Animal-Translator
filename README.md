@@ -518,6 +518,299 @@ Screenshots to Include
 ![image](https://github.com/user-attachments/assets/9dcf081e-982e-421c-9402-cdbe0be223ea)
 
 
+########################################################################################
+
+Assignment 4 Information !
+
+### Part 1 – PHPUnit API Tests  
+**What we did:**  
+- Added **four core tests** for `register_api_get.php`, `login_api_get.php` (success/failure), and `getPurchase_api.php` in `tests/ApiTest.php`.  
+- Each test uses **Guzzle** to issue HTTP GETs against `http://localhost/animal-translator/`, then asserts status codes and JSON fields.  
+- Ensured tests are **idempotent** by generating fresh usernames with `uniqid()` so re-runs never collide.
+
+### PHPUnit Test Results
+
+Below is the console output from `vendor/bin/phpunit --colors`, showing all four core tests (and the AI‑assisted edge case) running green:
+
+![image](https://github.com/user-attachments/assets/4d3273aa-853c-4464-ba8e-a3095130e5fb)
+
+![image](https://github.com/user-attachments/assets/2ac74a9e-73d9-4d33-8885-06622d862924)
+
+
+##Describe your workflow, e.g.:
+
+##Problem 2: AI-Assisted Testing
+To explore generative AI in testing, I prompted ChatGPT with:
+“Write a PHPUnit test method named testMakePurchaseMissingUsername in PHP. Assume this is inside a TestCase class with a pre-configured GuzzleHttp\Client in $this->client (base_uri “http://localhost/animal-translator/”, http_errors=false). The method should:
+Send a GET to makePurchase_api.php with only animal=Cat.
+Assert status code 200.
+Decode JSON.
+Assert success is false.
+Assert the message mentions that username is required.
+I then copied ChatGPT’s stub, tweaked the assertions to match my API’s behavior, and placed it in tests/PurchaseApiTest.php. Running
+bash
+CopyEdit
+vendor/bin/phpunit tests/PurchaseApiTest.php --colors
+yielded a green test, demonstrating that the AI-generated test correctly caught the missing-username error.
+
+### Part 2 – AI-Assisted Edge-Case Test  
+**What we did:**  
+- Crafted a **ChatGPT prompt** to generate an edge-case test for `makePurchase_api.php` when `username` is missing.  
+- Prompt:
+   > “Write a PHPUnit test method named `testMakePurchaseMissingUsername` in PHP.  
+   > Assume a TestCase with `$this->client` pointing at `http://localhost/animal-translator/`.  
+   > The method should GET `makePurchase_api.php?animal=Cat`, assert HTTP 200, decode JSON, assert `success:false`, and that `message` mentions “username.””  
+- Copied the AI’s stub into `tests/PurchaseApiTest.php`, tweaked it to match our actual endpoint behavior, and confirmed it passes.
+
+**How to reproduce:**  
+```bash
+vendor/bin/phpunit tests/PurchaseApiTest.php --colors
+```
+
+**How to run:**  
+1. Install PHP & Composer (e.g. via Homebrew or XAMPP’s PHP CLI).  
+2. In your API root (`…/htdocs/animal-translator`):  
+   ```bash
+   composer install
+   vendor/bin/phpunit --colors
+   ```
+
+
+### Part 3 – UI & UX Enhancements (“Animal Talk” Edition)  
+**Core polish (Project 4 UI tasks):**  
+1. **Search & Sort** on the purchases list (text filter + newest/oldest toggle).  
+2. **Styling** via React Native Paper, matching your website’s theme (logo, cards, inputs, buttons).  
+3. **Interactive Gestures**: swipe-to-edit and swipe-to-refund with `react-native-gesture-handler`.  
+4. **Feedback UX**:  
+   - Loading spinner on list load  
+   - Empty-state message  
+   - Toast/snackbar and confetti on successful purchase  
+5. **Responsive layouts** using Flexbox + ScrollView/FlatList.  
+6. **Accessibility**: proper labels, button roles, high-contrast text.  
+
+**Creative “Animal Talk” feature:**  
+- Added a **“Talk Now”** button on each purchase card.  
+- Built `AnimalTalkScreen.js` that lets you **hold to “record”**, shows **“Translating…”**, then switches to a **“Here’s what your {animal} is saying!”** view while playing back a canned `.m4a` clip.  
+- Used **expo-av** for zero-linking audio playback of `dog.m4a`, `cat.m4a`, etc.  
+- Wrote a dropdown to pick your animal (instead of free text) and a confetti animation on purchase.
+
+**How to run the frontend:**  
+```bash
+cd frontend-app
+npm install
+# If you’re on RN bare: 
+#   npx pod-install ios
+npx expo start --clear
+# then press “a” to open on Android, or scan the QR in Expo Go
+```
+
+---
+##Locally running with SQL database schema set up!
+
+
+### 1. Create the `Animals` database
+
+Open phpMyAdmin at `http://localhost/phpmyadmin` (or your preferred MySQL client) and run this SQL to create the schema and tables:
+
+```sql
+-- 1. Create the database
+CREATE DATABASE IF NOT EXISTS `Animals`
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_general_ci;
+USE `Animals`;
+
+-- 2. Create the 'users' table
+CREATE TABLE `users` (
+  `username`   VARCHAR(255)     NOT NULL,
+  `password`   VARCHAR(255)     NOT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_general_ci;
+
+-- 3. Create the 'animals' table
+CREATE TABLE `animals` (
+  `purchase_id` INT(8)          NOT NULL AUTO_INCREMENT,
+  `username`    VARCHAR(20)     NOT NULL,
+  `animal`      VARCHAR(20)     NOT NULL,
+  `time_date`   TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`purchase_id`),
+  INDEX `idx_username` (`username`)
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_general_ci;
+```
+
+### 2. Configure PHP & Composer
+
+You can run PHP and Composer either via XAMPP’s bundled binaries or a system install. Here’s the XAMPP approach:
+
+```bash
+# 1. Change into your API folder
+cd "/Applications/XAMPP/xamppfiles/htdocs/animal-translator"
+
+# 2. (If you haven't) download Composer installer
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+
+# 3. Run installer with XAMPP’s PHP
+/Applications/XAMPP/xamppfiles/bin/php composer-setup.php
+
+# 4. Install PHPUnit & Guzzle
+/Applications/XAMPP/xamppfiles/bin/php composer.phar require --dev phpunit/phpunit:^9 guzzlehttp/guzzle:^7
+```
+
+> **Tip:** If you prefer a system PHP, you can instead `brew install php composer` and then just run `composer require …` inside your project root.
+
+### 3. Set up your PHP connection
+
+In `conn.php`, point the host at TCP to avoid socket issues:
+
+```php
+<?php
+$db_host = '127.0.0.1';
+$db_user = 'root';
+$db_pass = '';
+$db_name = 'Animals';
+
+$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name);
+if ($mysqli->connect_error) {
+  die('DB Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+}
+?>
+```
+
+### 4. Run your PHPUnit tests
+
+From the same `animal-translator` folder:
+
+```bash
+# Core tests (Part 1)
+vendor/bin/phpunit --colors
+
+# AI‐assisted edge‐case (Part 2)
+vendor/bin/phpunit tests/PurchaseApiTest.php --colors
+```
+
+You should see:
+
+```
+OK (4 tests, 11 assertions)
+OK (1 test, 5 assertions)
+```
+
+### 5. Start the React Native frontend
+
+In a separate terminal, navigate to your Expo app and launch:
+
+```bash
+cd "/Applications/XAMPP/xamppfiles/htdocs/animal-translator/frontend-app"
+npm install
+npx expo start --clear
+# Press 'a' to open on Android, or scan the QR with Expo Go
+```
+
+Your mobile app will now point at `http://localhost/animal-translator/` for all CRUD and “Animal Talk” audio features.
+
+---
+
+---
+
+## Running Everything Locally (XAMPP + Expo)
+
+1. **Clone or copy** this repo into your XAMPP `htdocs`:  
+   ```
+   /Applications/XAMPP/xamppfiles/htdocs/animal-translator
+   ```
+2. **Start XAMPP**’s Apache & MySQL via the XAMPP Control Panel.
+3. **Create the database** (`Animals`):  
+   - Open phpMyAdmin at `http://localhost/phpmyadmin`  
+   - Create a new schema named `Animals` and import any provided SQL seed.
+4. **Adjust `conn.php`** (already set in repo) to use:
+   ```php
+   $db_host = '127.0.0.1';
+   $db_user = 'root';
+   $db_pass = '';
+   $db_name = 'Animals';
+   ```
+5. **Install PHP dependencies**:  
+   ```bash
+   cd /Applications/XAMPP/xamppfiles/htdocs/animal-translator
+   composer install
+   ```
+6. **Run your PHPUnit tests**:
+   ```bash
+   vendor/bin/phpunit --colors
+   ```
+7. **Start the mobile app** (in a separate terminal):
+   ```bash
+   cd /Applications/XAMPP/xamppfiles/htdocs/animal-translator/frontend-app
+   npm install
+   npx expo start --clear
+   ```
+   - Press **a** to launch on Android or scan the QR with Expo Go.
+
+
+Android studio was used alongside a 34 APK Pixel 6A android emulator for testing purposes.
+
+##Images:
+
+
+Purchases Screen — Features
+
+Logout button in the header
+Welcome greeting with username
+Search bar (filter by animal name)
+Sort toggle (Newest ↕︎ / Oldest ↕︎)
+Swipe‑to‑Edit (pencil icon)
+Swipe‑to‑Refund (undo icon)
+“Talk Now” button on each card (hold‑to‑record UI, “Translating…” state, audio playback)
+Floating “+” FAB to buy a new animal
+
+<img width="276" alt="image" src="https://github.com/user-attachments/assets/e41e8a59-b911-4c30-8704-3729a98a1cc9" />
+
+
+
+
+Animal Talk Screen:
+<img width="270" alt="image" src="https://github.com/user-attachments/assets/d9be27d2-6d16-4a23-a88a-c4f0b501b27b" />
+
+
+PhpMyAdmin local database:
+<img width="994" alt="image" src="https://github.com/user-attachments/assets/c13fb5a0-0ab4-463c-9733-9c55ffbf6dfc" />
+<img width="1001" alt="image" src="https://github.com/user-attachments/assets/e9969d2f-798b-4364-b80e-2089dc90ec12" />
+<img width="907" alt="image" src="https://github.com/user-attachments/assets/0c9b9863-24f9-4988-a438-8553de66a45a" />
+
+Login Screen:
+<img width="274" alt="image" src="https://github.com/user-attachments/assets/39a6a5ad-4810-4ee5-ac77-8707e63b3f06" />
+
+Register Screen: 
+<img width="268" alt="image" src="https://github.com/user-attachments/assets/8ad65dd1-b740-49e9-ae9f-befadf4b868c" />
+
+Make Purchase Screen: 
+<img width="279" alt="image" src="https://github.com/user-attachments/assets/0df1285a-2534-48b5-8e21-01a9b8192ac1" />
+<img width="274" alt="image" src="https://github.com/user-attachments/assets/a7f7e80f-200b-4668-bb45-37a18c296f3a" />
+
+Successful Purchase (hooray!):
+(I'm actually not fast enough to get a picture of this but a popup comes up that says "You have succesfully made a purchase! and confetti fills the screen)
+
+Refund and edit options (Swipable):
+<img width="273" alt="image" src="https://github.com/user-attachments/assets/e3472177-9bd0-4aed-b114-bf624e888718" />
+<img width="279" alt="image" src="https://github.com/user-attachments/assets/4b3eb4eb-0357-4d66-b23a-880ba28755c8" />
+
+Refund:
+
+<img width="267" alt="image" src="https://github.com/user-attachments/assets/2106158e-814d-48ea-b821-a6fdda57f633" />
+
+Edit: 
+
+<img width="273" alt="image" src="https://github.com/user-attachments/assets/dc21c75a-df5e-478a-90a2-71e6598302a0" />
+
+ 
+Abdu and Jaime - We split the work flow exactly 50/50 this project!
+
+
+
+
 
 ## Credits
 - Frontend: Jaime 50%
