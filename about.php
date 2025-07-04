@@ -278,17 +278,6 @@ if (!isset($_SESSION['username'])) {
     }
   </style>
 
-<style>
-.navbar {
-    width: 100%;
-    background-color: #187795;
-    color: white;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-    margin-top: 60px;
-}
-</style>
 
 </head>
 <body>
@@ -369,9 +358,6 @@ if (!isset($_SESSION['username'])) {
 
   <div class="translator-heading">The Animal Translator</div>
 
-  <div class="divstyle">
-    Our hope for this product is that it helps to shorten the wide gap between humans and animals, allowing us to take better care of them.
-  </div>
     
   <div class="button-container" id="features">
     <a class="cta-button" href="https://www.broadinstitute.org/elephant/elephant-genome-project" target="_blank">Project Genome</a>

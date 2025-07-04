@@ -77,7 +77,7 @@
   <!-- hero Section with blurred raccoon background -->
   <header class="hero">
     <h1>Welcome to Animal Translator!</h1>
-    <p>Translate your pets' thoughts to human language!</p>
+    <p>Track, analyze, and understand your pet like never before!</p>
     <a href="https://www.newyorker.com/science/elements/the-challenges-of-animal-translation" class="cta-button" target="_blank">Learn More</a>
     <link rel="preload" href="pictures/raccoon.jpg" as="image">
   </header>

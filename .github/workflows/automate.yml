@@ -1,0 +1,25 @@
+name: 🚀 FTP Deploy on Push to Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v3
+
+      - name: 📤 Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOSTING_HOSTNAME }}
+          username: ${{ secrets.HOSTING_USERNAME }}
+          password: ${{ secrets.HOSTING_PASSWORD }}
+          server-dir: /htdocs/      # This is usually the folder your files go into
+          local-dir: ./             # Deploy everything from repo root
+          protocol: ftp             # Default is 'ftp' but you can specify
+          log-level: standard       # Optional: verbose, minimal, standard
